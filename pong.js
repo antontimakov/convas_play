@@ -46,14 +46,14 @@ function Rect(color, x, y, width, height) {
 function play(){
     goGame.field.draw();
     goFloat.field.draw();
-
 }
 function clickFloat(poE){
     if (
         poE.x > goFloat.field.x &&
         poE.x <= (goFloat.field.x + goFloat.field.width) &&
         poE.y > goFloat.field.y &&
-        poE.y <= (goFloat.field.y + goFloat.field.height)){
+        poE.y <= (goFloat.field.y + goFloat.field.height)
+    ){
         goFloat.field.x += 20;
     }
 }
