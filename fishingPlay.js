@@ -26,7 +26,9 @@ let goCast = {
     field: null
 };
 
-let gbShowFloat = false;
+let gbShowFloat = false; // показывать поплавок
+let goTimeBitingStart = null; // время начала поклёвки
+let goTimeBitingEnd = null; // время начала поклёвки
 
 function init() {
     let canvas = document.getElementById("fishingPlay");
@@ -63,6 +65,13 @@ function Rect(color, x, y, width, height) {
 }
 function play(){
     goGame.field.draw();
+    if (goTimeBitingStart && (goTimeBitingStart < new Date().getTime()) && gbShowFloat && !goTimeBitingEnd){
+        biting();
+    }
+    if (goTimeBitingEnd && (goTimeBitingEnd < new Date().getTime()) && gbShowFloat){
+        gbShowFloat = false;
+        goFloat.field.color = goFloat.color;
+    }
     if (gbShowFloat){
         goFloat.field.draw();
     }
@@ -90,7 +99,8 @@ function clickCast(poE){
         goFloat.field.color = goFloat.color;
         goFloat.field.x =  getXFloat();
         goFloat.field.y =  getYFloat();
-        setTimeout(biting, randn_bm() * 10000);
+        goTimeBitingStart = new Date().getTime() + randn_bm() * 10000;
+        goTimeBitingEnd = null;
     }
 }
 // Нормальное распеределение от 0 до 1 с МО 0.5
@@ -106,6 +116,7 @@ function randn_bm() {
 // событие клевание рыбы
 function biting(){
     if (gbShowFloat){ // без этого условия будет перекрашиваться даже не скрытый поплавок
+        goTimeBitingEnd = new Date().getTime() + randn_bm() * 10000;
         goFloat.field.color = goFloat.bitingColor;
     }
 }
