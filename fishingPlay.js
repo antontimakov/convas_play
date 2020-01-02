@@ -37,7 +37,7 @@ function init() {
     // объект который задаёт игровое поле
     goGame.field = new Rect(goGame.color, 0, 0, goGame.width, goGame.height);
     // объект который задаёт поплавок
-    goFloat.field = new Rect(goFloat.color,  getXFloat(), 0, goFloat.width, goFloat.height);
+    goFloat.field = new Rect(goFloat.color,  getXFloat(), getYFloat(), goFloat.width, goFloat.height);
     // объект который задаёт кнопку броска
     goCast.field = new Rect(
         goCast.color,
@@ -89,7 +89,8 @@ function clickCast(poE){
         gbShowFloat = true;
         goFloat.field.color = goFloat.color;
         goFloat.field.x =  getXFloat();
-        setTimeout(biting, randn_bm() * 3000);
+        goFloat.field.y =  getYFloat();
+        setTimeout(biting, randn_bm() * 10000);
     }
 }
 // Нормальное распеределение от 0 до 1 с МО 0.5
@@ -113,7 +114,11 @@ function allClicks(poE){
     clickFloat(poE);
     clickCast(poE);
 }
-//
+// вычисляет х координату броска
 function getXFloat() {
     return Math.random() * (goGame.width - goFloat.width - goCast.width);
+}
+// вычисляет у координату броска
+function getYFloat() {
+    return Math.random() * (goGame.height - goFloat.height);
 }
