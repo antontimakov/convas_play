@@ -81,6 +81,9 @@ function clickFloat(poE){
         poE.y <= (goFloat.y + goFloat.height)
     ){
         gbShowFloat = false;
+        axios.get('http://localhost', {
+            method: 'getFish'
+        });
     }
 }
 function clickCast(poE){
