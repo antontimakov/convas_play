@@ -27,7 +27,7 @@ let goCast = {
     width: 40,
     height: 320,
     color: 'black',
-    field: null
+    img: null
 };
 
 let gbShowFloat = false; // показывать поплавок
@@ -41,20 +41,17 @@ function init() {
     goContext = canvas.getContext("2d");
     goFloat.img = new Image();
     goFloat.img.src = 'img/float.png';
+    goCast.img = new Image();
+    goCast.img.src = 'img/rod.png';
 
     // объект который задаёт игровое поле
     goGame.field = new Rect(goGame.color, 0, 0, goGame.width, goGame.height);
-    // объект который задаёт кнопку броска
-    goCast.field = new Rect(
-        goCast.color,
-        goGame.width - goCast.width,
-        goGame.height - goCast.height,
-        goCast.width,
-        goCast.height);
 
     canvas.onclick = allClicks;
     goFloat.img.onload = () => {
-        setInterval(play, 1000 / 50);
+        goCast.img.onload = () => {
+            setInterval(play, 1000 / 50);
+        };
     };
 }
 // класс определяющий параметры игрового прямоугольника и метод для его отрисовки
@@ -74,7 +71,7 @@ function play(){
     biting();
     autoStopBiting();
     showFloat();
-    goCast.field.draw();
+    goContext.drawImage(goCast.img, goGame.width - goCast.width, 0);
 }
 function clickFloat(poE){
     if (
@@ -88,10 +85,10 @@ function clickFloat(poE){
 }
 function clickCast(poE){
     if (
-        poE.x > goCast.field.x &&
-        poE.x <= (goCast.field.x + goCast.field.width) &&
-        poE.y > goCast.field.y &&
-        poE.y <= (goCast.field.y + goCast.field.height)
+        (poE.x > (goGame.width - goCast.width)) &&
+        poE.x <= goGame.width &&
+        poE.y > 0 &&
+        poE.y <= goGame.height
     ){
         gbShowFloat = true;
         goFloat.x =  getXFloat();
