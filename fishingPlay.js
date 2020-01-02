@@ -17,7 +17,7 @@ let goFloat = {
     field: null
 };
 
-// конфигурация поплавка
+// конфигурация кнопки заброса
 let goCast = {
     width: 40,
     height: 40,
@@ -26,7 +26,6 @@ let goCast = {
 };
 
 let gbShowFloat = false;
-let gdTimeToShow = null;
 
 function init() {
     let canvas = document.getElementById("fishingPlay");
@@ -86,7 +85,8 @@ function clickCast(poE){
         poE.y > goCast.field.y &&
         poE.y <= (goCast.field.y + goCast.field.height)
     ){
-        let timerId = setTimeout(()=>{gbShowFloat = true;}, 3000);
+        gbShowFloat = true;
+        let timerId = setTimeout(biting, 3000);
     }
 }
 // Нормальное распеределение от 0 до 1 с МО близким к 0
@@ -98,4 +98,8 @@ function randn_bm() {
     num = num / 5.0;
     if (num > 1 || num < 0) return randn_bm();
     return num;
+}
+// событие клевание рыбы
+function biting(){
+    goFloat.field.color = 'red';
 }
