@@ -15,7 +15,13 @@ let goFloat = {
     height: 40,
     color: 'black',
     bitingColor: 'red',
-    field: null
+    field: null,
+    x: 0,
+    y: 0,
+    img: null,
+    gbBiting: false,
+    radius: 20,
+    bitingRadius: null,
 };
 
 // конфигурация кнопки заброса
@@ -35,6 +41,8 @@ function init() {
     canvas.width = goGame.width;
     canvas.height = goGame.height;
     goContext = canvas.getContext("2d");
+    goFloat.img = new Image();
+    goFloat.img.src = 'img/float.png';
 
     // объект который задаёт игровое поле
     goGame.field = new Rect(goGame.color, 0, 0, goGame.width, goGame.height);
@@ -49,7 +57,9 @@ function init() {
         goCast.height);
 
     canvas.onclick = allClicks;
-    setInterval(play, 1000 / 50);
+    goFloat.img.onload = () => {
+        setInterval(play, 1000 / 50);
+    };
 }
 // класс определяющий параметры игрового прямоугольника и метод для его отрисовки
 function Rect(color, x, y, width, height) {
@@ -65,24 +75,17 @@ function Rect(color, x, y, width, height) {
 }
 function play(){
     goGame.field.draw();
-    if (goTimeBitingStart && (goTimeBitingStart < new Date().getTime()) && gbShowFloat && !goTimeBitingEnd){
-        biting();
-    }
-    if (goTimeBitingEnd && (goTimeBitingEnd < new Date().getTime()) && gbShowFloat){
-        gbShowFloat = false;
-        goFloat.field.color = goFloat.color;
-    }
-    if (gbShowFloat){
-        goFloat.field.draw();
-    }
+    biting();
+    autoStopBiting();
+    showFloat();
     goCast.field.draw();
 }
 function clickFloat(poE){
     if (
-        poE.x > goFloat.field.x &&
-        poE.x <= (goFloat.field.x + goFloat.field.width) &&
-        poE.y > goFloat.field.y &&
-        poE.y <= (goFloat.field.y + goFloat.field.height)
+        poE.x > goFloat.x &&
+        poE.x <= (goFloat.x + goFloat.width) &&
+        poE.y > goFloat.y &&
+        poE.y <= (goFloat.y + goFloat.height)
     ){
         gbShowFloat = false;
         goFloat.field.color = goFloat.color;
@@ -97,8 +100,11 @@ function clickCast(poE){
     ){
         gbShowFloat = true;
         goFloat.field.color = goFloat.color;
+        goFloat.x =  getXFloat();
+        goFloat.y =  getYFloat();
         goFloat.field.x =  getXFloat();
         goFloat.field.y =  getYFloat();
+        goFloat.bitingRadius = goFloat.radius;
         goTimeBitingStart = new Date().getTime() + randn_bm() * 10000;
         goTimeBitingEnd = null;
     }
@@ -115,8 +121,14 @@ function randn_bm() {
 }
 // событие клевание рыбы
 function biting(){
-    if (gbShowFloat){ // без этого условия будет перекрашиваться даже не скрытый поплавок
+    if (
+        goTimeBitingStart &&
+        (goTimeBitingStart < new Date().getTime()) &&
+        gbShowFloat &&
+        !goTimeBitingEnd
+    ){
         goTimeBitingEnd = new Date().getTime() + randn_bm() * 10000;
+        goFloat.gbBiting = true;
         goFloat.field.color = goFloat.bitingColor;
     }
 }
@@ -132,4 +144,34 @@ function getXFloat() {
 // вычисляет у координату броска
 function getYFloat() {
     return Math.random() * (goGame.height - goFloat.height);
+}
+// показывает поплавок
+function showFloat(){
+    if (gbShowFloat){
+        goContext.drawImage(goFloat.img, goFloat.x, goFloat.y);
+        goFloat.field.draw();
+        bitingAnimate();
+    }
+}
+// рыба перестала клевать
+function autoStopBiting() {
+    if (goTimeBitingEnd && (goTimeBitingEnd < new Date().getTime()) && gbShowFloat){
+        gbShowFloat = false;
+        goFloat.field.color = goFloat.color;
+    }
+}
+// анимация поклёвки
+function bitingAnimate() {
+    if (goFloat.gbBiting) {
+        goContext.beginPath();
+        goContext.arc(
+            goFloat.x + goFloat.width / 2,
+            goFloat.y + goFloat.height / 2,
+            goFloat.bitingRadius++,
+            0,
+            Math.PI * 2,
+            true
+        );
+        goContext.stroke();
+    }
 }
