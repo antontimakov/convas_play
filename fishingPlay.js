@@ -37,7 +37,7 @@ function init() {
     // объект который задаёт игровое поле
     goGame.field = new Rect(goGame.color, 0, 0, goGame.width, goGame.height);
     // объект который задаёт поплавок
-    goFloat.field = new Rect(goFloat.color, 0, 0, goFloat.width, goFloat.height);
+    goFloat.field = new Rect(goFloat.color,  getXFloat(), 0, goFloat.width, goFloat.height);
     // объект который задаёт кнопку броска
     goCast.field = new Rect(
         goCast.color,
@@ -87,6 +87,8 @@ function clickCast(poE){
         poE.y <= (goCast.field.y + goCast.field.height)
     ){
         gbShowFloat = true;
+        goFloat.field.color = goFloat.color;
+        goFloat.field.x =  getXFloat();
         setTimeout(biting, randn_bm() * 3000);
     }
 }
@@ -110,4 +112,8 @@ function biting(){
 function allClicks(poE){
     clickFloat(poE);
     clickCast(poE);
+}
+//
+function getXFloat() {
+    return Math.random() * (goGame.width - goFloat.width - goCast.width);
 }
