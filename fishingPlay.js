@@ -25,7 +25,7 @@ let goFloat = {
 // конфигурация кнопки заброса
 let goCast = {
     width: 40,
-    height: 40,
+    height: 320,
     color: 'black',
     field: null
 };
