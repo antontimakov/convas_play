@@ -14,8 +14,6 @@ let goFloat = {
     width: 40,
     height: 40,
     color: 'black',
-    bitingColor: 'red',
-    field: null,
     x: 0,
     y: 0,
     img: null,
@@ -46,8 +44,6 @@ function init() {
 
     // объект который задаёт игровое поле
     goGame.field = new Rect(goGame.color, 0, 0, goGame.width, goGame.height);
-    // объект который задаёт поплавок
-    goFloat.field = new Rect(goFloat.color,  getXFloat(), getYFloat(), goFloat.width, goFloat.height);
     // объект который задаёт кнопку броска
     goCast.field = new Rect(
         goCast.color,
@@ -88,7 +84,6 @@ function clickFloat(poE){
         poE.y <= (goFloat.y + goFloat.height)
     ){
         gbShowFloat = false;
-        goFloat.field.color = goFloat.color;
     }
 }
 function clickCast(poE){
@@ -99,11 +94,8 @@ function clickCast(poE){
         poE.y <= (goCast.field.y + goCast.field.height)
     ){
         gbShowFloat = true;
-        goFloat.field.color = goFloat.color;
         goFloat.x =  getXFloat();
         goFloat.y =  getYFloat();
-        goFloat.field.x =  getXFloat();
-        goFloat.field.y =  getYFloat();
         goFloat.bitingRadius = goFloat.radius;
         goTimeBitingStart = new Date().getTime() + randn_bm() * 10000;
         goTimeBitingEnd = null;
@@ -129,7 +121,6 @@ function biting(){
     ){
         goTimeBitingEnd = new Date().getTime() + randn_bm() * 10000;
         goFloat.gbBiting = true;
-        goFloat.field.color = goFloat.bitingColor;
     }
 }
 // вызывает все клики
@@ -149,7 +140,6 @@ function getYFloat() {
 function showFloat(){
     if (gbShowFloat){
         goContext.drawImage(goFloat.img, goFloat.x, goFloat.y);
-        goFloat.field.draw();
         bitingAnimate();
     }
 }
@@ -157,7 +147,6 @@ function showFloat(){
 function autoStopBiting() {
     if (goTimeBitingEnd && (goTimeBitingEnd < new Date().getTime()) && gbShowFloat){
         gbShowFloat = false;
-        goFloat.field.color = goFloat.color;
     }
 }
 // анимация поклёвки
