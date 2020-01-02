@@ -18,7 +18,7 @@ let goFloat = {
 };
 
 function init() {
-    let canvas = document.getElementById("pong");
+    let canvas = document.getElementById("fishingPlay");
     canvas.width = goGame.width;
     canvas.height = goGame.height;
     goContext = canvas.getContext("2d");
