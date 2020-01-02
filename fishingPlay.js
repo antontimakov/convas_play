@@ -5,7 +5,7 @@ let goContext = null;
 let goGame = {
     width: 480,
     height: 320,
-    color: 'blue',
+    color: '#9999ff',
     field: null
 };
 
