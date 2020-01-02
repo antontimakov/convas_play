@@ -99,6 +99,7 @@ function clickCast(poE){
         goFloat.bitingRadius = goFloat.radius;
         goTimeBitingStart = new Date().getTime() + randn_bm() * 10000;
         goTimeBitingEnd = null;
+        goFloat.gbBiting = false;
     }
 }
 // Нормальное распеределение от 0 до 1 с МО 0.5
@@ -117,7 +118,7 @@ function biting(){
         goTimeBitingStart &&
         (goTimeBitingStart < new Date().getTime()) &&
         gbShowFloat &&
-        !goTimeBitingEnd
+        !goTimeBitingEnd // чтобы функция выполнялась 1 раз за поклёвку
     ){
         goTimeBitingEnd = new Date().getTime() + randn_bm() * 10000;
         goFloat.gbBiting = true;
