@@ -6,7 +6,8 @@ let goGame = {
     width: 480,
     height: 320,
     color: '#9999ff',
-    field: null
+    field: null,
+    bagfield: null
 };
 
 // конфигурация поплавка
@@ -34,18 +35,25 @@ let gbShowFloat = false; // показывать поплавок
 let goTimeBitingStart = null; // время начала поклёвки
 let goTimeBitingEnd = null; // время начала поклёвки
 
+let gaBagImgs = [];
+
 function init() {
     let canvas = document.getElementById("fishingPlay");
     canvas.width = goGame.width;
-    canvas.height = goGame.height;
+    canvas.height = 360;
     goContext = canvas.getContext("2d");
     goFloat.img = new Image();
     goFloat.img.src = 'img/float.png';
     goCast.img = new Image();
     goCast.img.src = 'img/rod.png';
+    gaBagImgs[0] = new Image();
+    gaBagImgs[0].src = 'img/fish0.png';
+    gaBagImgs[1] = new Image();
+    gaBagImgs[1].src = 'img/fish0.png';
 
     // объект который задаёт игровое поле
     goGame.field = new Rect(goGame.color, 0, 0, goGame.width, goGame.height);
+    goGame.bagfield = new Rect('gray', 0, goGame.height, goGame.width, 40);
 
     canvas.onclick = allClicks;
     goFloat.img.onload = () => {
@@ -68,6 +76,9 @@ function Rect(color, x, y, width, height) {
 }
 function play(){
     goGame.field.draw();
+    goGame.bagfield.draw();
+    goContext.drawImage(gaBagImgs[0], goGame.width - 40, goGame.height);
+    goContext.drawImage(gaBagImgs[1], goGame.width - 80, goGame.height);
     biting();
     autoStopBiting();
     showFloat();
