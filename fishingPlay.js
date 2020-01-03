@@ -81,7 +81,7 @@ function clickFloat(poE){
         poE.y <= (goFloat.y + goFloat.height)
     ){
         gbShowFloat = false;
-        axios.get('http://localhost/server/index.php?method=getBagItems')
+        window.axios.get('/server/index.php?method=getBagItems')
             .then(response => console.log(response.data));
     }
 }
