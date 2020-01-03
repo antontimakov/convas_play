@@ -46,10 +46,12 @@ function init() {
     goFloat.img.src = 'img/float.png';
     goCast.img = new Image();
     goCast.img.src = 'img/rod.png';
-    gaBagImgs[0] = new Image();
-    gaBagImgs[0].src = 'img/fish0.png';
-    gaBagImgs[1] = new Image();
-    gaBagImgs[1].src = 'img/fish0.png';
+    gaBagImgs[0] = {};
+    gaBagImgs[0].goImg = new Image();
+    gaBagImgs[0].goImg.src = 'img/fish0.png';
+    gaBagImgs[1] = {};
+    gaBagImgs[1].goImg = new Image();
+    gaBagImgs[1].goImg.src = 'img/fish0.png';
 
     // объект который задаёт игровое поле
     goGame.field = new Rect(goGame.color, 0, 0, goGame.width, goGame.height);
@@ -77,8 +79,12 @@ function Rect(color, x, y, width, height) {
 function play(){
     goGame.field.draw();
     goGame.bagfield.draw();
-    goContext.drawImage(gaBagImgs[0], goGame.width - 40, goGame.height);
-    goContext.drawImage(gaBagImgs[1], goGame.width - 80, goGame.height);
+    if (gaBagImgs[0].gnCount){
+        goContext.drawImage(gaBagImgs[0].goImg, goGame.width - 40, goGame.height);
+    }
+    if (gaBagImgs[1].gnCount) {
+        goContext.drawImage(gaBagImgs[1].goImg, goGame.width - 80, goGame.height);
+    }
     biting();
     autoStopBiting();
     showFloat();
@@ -94,6 +100,7 @@ function clickFloat(poE){
         gbShowFloat = false;
         window.axios.get('/server/index.php?method=getBagItems')
             .then(response => console.log(response.data));
+        gaBagImgs[0].gnCount = 1;
     }
 }
 function clickCast(poE){
