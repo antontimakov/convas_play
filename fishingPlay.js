@@ -59,11 +59,11 @@ function init() {
     };
     window.axios.get('/server/index.php?method=getBagItems')
         .then(response => {
-            for (let item in response.data){
-                gaBagImgs[item] = {};
-                gaBagImgs[item].goImg = new Image();
-                gaBagImgs[item].goImg.src = response.data[item].src;
-            }
+            response.data.forEach(function (element, index) {
+                gaBagImgs[index] = {};
+                gaBagImgs[index].goImg = new Image();
+                gaBagImgs[index].goImg.src = element.src;
+            });
             console.log(gaBagImgs);
         });
 }
