@@ -46,12 +46,6 @@ function init() {
     goFloat.img.src = 'img/float.png';
     goCast.img = new Image();
     goCast.img.src = 'img/rod.png';
-    gaBagImgs[0] = {};
-    gaBagImgs[0].goImg = new Image();
-    gaBagImgs[0].goImg.src = 'img/fish0.png';
-    gaBagImgs[1] = {};
-    gaBagImgs[1].goImg = new Image();
-    gaBagImgs[1].goImg.src = 'img/fish0.png';
 
     // объект который задаёт игровое поле
     goGame.field = new Rect(goGame.color, 0, 0, goGame.width, goGame.height);
@@ -63,26 +57,29 @@ function init() {
             setInterval(play, 1000 / 50);
         };
     };
-}
-// класс определяющий параметры игрового прямоугольника и метод для его отрисовки
-function Rect(color, x, y, width, height) {
-    this.color = color;
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.draw = function() {
-        goContext.fillStyle = this.color;
-        goContext.fillRect(this.x, this.y, this.width, this.height);
-    };
+    window.axios.get('/server/index.php?method=getBagItems')
+        .then(response => {
+            for (let item in response.data){
+                gaBagImgs[item] = {};
+                gaBagImgs[item].goImg = new Image();
+                gaBagImgs[item].goImg.src = response.data[item].src;
+            }
+            console.log(gaBagImgs);
+        });
 }
 function play(){
     goGame.field.draw();
     goGame.bagfield.draw();
-    if (gaBagImgs[0].gnCount){
+    if (gaBagImgs[0]){
         goContext.drawImage(gaBagImgs[0].goImg, goGame.width - 40, goGame.height);
+        // настройки текста
+        goContext.font = 'bold 20px courier';
+        goContext.textAlign = 'center';
+        goContext.textBaseline = 'top';
+        goContext.fillStyle = 'white';
+        goContext.fillText(1,  goGame.width - 10, 340);
     }
-    if (gaBagImgs[1].gnCount) {
+    if (gaBagImgs[1]) {
         goContext.drawImage(gaBagImgs[1].goImg, goGame.width - 80, goGame.height);
     }
     biting();
