@@ -29,7 +29,6 @@ class Float extends ImgContainer {
                 this.show = false;
                 window.axios.get('/server/index.php?method=getFish')
                     .then(response => {
-                        console.log(response.data);
                         goBag.init();
                     });
             }

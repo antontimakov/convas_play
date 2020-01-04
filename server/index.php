@@ -19,23 +19,32 @@
                 ;";
                 break;
             case 'getFish':
+                $item = rand (0,1000);
+                if ($item > 900){
+                    $item = 3;
+                }
+                else {
+                    $item = 1;
+                }
                 $query = "
-                    WITH a AS (
-                        INSERT INTO public.tbag (
-                            user_id,
-                            item_id
-                        ) VALUES (
-                            1,
-                            1
-                        )
-                    )
+                    BEGIN;
+                    
+                    INSERT INTO public.tbag (
+                        user_id,
+                        item_id
+                    ) VALUES (
+                        1,
+                        {$item}
+                    );
+
                     SELECT
                         id,
                         name,
                         src
                     FROM public.titem
-                    WHERE id = 1
-                ;";
+                    WHERE id = {$item};
+
+                COMMIT;";
                 break;
         }
         requestByQuery($query);

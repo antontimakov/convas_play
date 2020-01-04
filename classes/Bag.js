@@ -21,6 +21,15 @@ class Bag {
             goGame.context.fillStyle = 'white';
             goGame.context.fillText(this.imgs[1].count,  this.x + this.width - 10, this.y + 20);
         }
+        if (this.imgs[3]){
+            goGame.context.drawImage(this.imgs[3].img, this.x + this.width - 80, this.y);
+            // настройки текста
+            goGame.context.font = 'bold 20px courier';
+            goGame.context.textAlign = 'center';
+            goGame.context.textBaseline = 'top';
+            goGame.context.fillStyle = 'white';
+            goGame.context.fillText(this.imgs[3].count,  this.x + this.width - 50, this.y + 20);
+        }
     }
     init(){
         let loMe = this;
