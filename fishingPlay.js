@@ -42,35 +42,13 @@ function init() {
     goFloat.img.src = 'img/float.png';
 
     setInterval(play, goGame.timeout);
-    /*window.axios.get('/server/index.php?method=getBagItems')
-        .then(response => {
-            response.data.forEach(function (element, index) {
-                gaBagImgs[index] = {};
-                gaBagImgs[index].goImg = new Image();
-                gaBagImgs[index].goImg.src = element.src;
-            });
-            console.log(gaBagImgs);
-        });*/
 }
 
 function play(){
     goLake.draw();
     goCast.draw();
     goBag.draw();
-    /*
-    if (gaBagImgs[0]){
-        goGame.context.drawImage(gaBagImgs[0].goImg, goGame.width - 40, goGame.height);
-        // настройки текста
-        goGame.context.font = 'bold 20px courier';
-        goGame.context.textAlign = 'center';
-        goGame.context.textBaseline = 'top';
-        goGame.context.fillStyle = 'white';
-        goGame.context.fillText(1,  goGame.width - 10, 340);
-    }
-    if (gaBagImgs[1]) {
-        goGame.context.drawImage(gaBagImgs[1].goImg, goGame.width - 80, goGame.height);
-    }
-    biting();
+    /*biting();
     autoStopBiting();
     showFloat();
     goGame.context.drawImage(goCast.img, goGame.width - goCast.width, 0);*/
