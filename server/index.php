@@ -27,24 +27,22 @@
                     $item = 1;
                 }
                 $query = "
-                    BEGIN;
-                    
-                    INSERT INTO public.tbag (
-                        user_id,
-                        item_id
-                    ) VALUES (
-                        1,
-                        {$item}
-                    );
-
+                    WITH a AS (
+                        INSERT INTO public.tbag (
+                            user_id,
+                            item_id
+                        ) VALUES (
+                            1,
+                            {$item}
+                        )
+                    )
                     SELECT
                         id,
                         name,
                         src
                     FROM public.titem
-                    WHERE id = {$item};
-
-                COMMIT;";
+                    WHERE id = {$item}
+                ;";
                 break;
         }
         requestByQuery($query);
