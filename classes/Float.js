@@ -18,16 +18,25 @@ class Float extends ImgContainer {
             moBiting: 5000
         }
     }
-    click(){
+    click(poE){
         if (
             poE.x > this.x &&
             poE.x <= (this.x + this.width) &&
             poE.y > this.y &&
             poE.y <= (this.y + this.height)
         ){
+            if (this.biting) {
+                this.show = false;
+                window.axios.get('/server/index.php?method=getFish')
+                    .then(response => {
+                        console.log(response.data);
+                        goBag.init();
+                    });
+            }
+            else{
+                // не клюнула
+            }
             this.show = false;
-            window.axios.get('/server/index.php?method=getFish')
-                .then(response => console.log(response.data));
         }
     }
     draw(){

@@ -24,8 +24,8 @@ function init() {
 function play(){
     goLake.draw();
     goCast.draw();
-    goBag.draw();
     goFloat.draw();
+    goBag.draw();
 }
 
 // Нормальное распеределение от 0 до 1 с МО 0.5
@@ -40,6 +40,6 @@ function randn_bm() {
 }
 // вызывает все клики
 function allClicks(poE){
-    //clickFloat(poE);
+    goFloat.click(poE);
     goCast.click(poE);
 }
