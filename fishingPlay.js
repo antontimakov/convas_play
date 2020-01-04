@@ -62,8 +62,8 @@ function init() {
 }
 
 function play(){
-    goGame.context.drawImage(goLake.img, goLake.x, goLake.y);
-    goGame.context.drawImage(goCast.img, goCast.x, goCast.y);
+    goLake.draw();
+    goCast.draw();
     goBag.field.draw();
     /*
     if (gaBagImgs[0]){
