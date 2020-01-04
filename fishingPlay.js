@@ -1,34 +1,35 @@
 "use strict";
-let goContext = null;
 
-// конфигурация игрового поля
-let goGame = {
-    width: 480,
-    height: 320,
-    color: '#9999ff',
-    field: null,
-    bagfield: null
+// конфигурация игры
+let goGame = null;
+
+// конфигурация области забрасывания
+let goLake = null;
+
+// конфигурация кнопки заброса
+let goCast = null;
+
+// конфигурация сумки
+let goBag = {
+    x: 0,
+    y: 320,
+    width: 520, //
+    height: 40,
+    color: 'gray',
+    field: null
 };
-
 // конфигурация поплавка
 let goFloat = {
-    width: 40,
-    height: 40,
-    color: 'black',
     x: 0,
     y: 0,
+    width: 40,
+    height: 40,
+    show: false,
+    color: 'black',
     img: null,
     gbBiting: false,
     radius: 20,
     bitingRadius: null,
-};
-
-// конфигурация кнопки заброса
-let goCast = {
-    width: 40,
-    height: 320,
-    color: 'black',
-    img: null
 };
 
 let gbShowFloat = false; // показывать поплавок
@@ -38,26 +39,18 @@ let goTimeBitingEnd = null; // время начала поклёвки
 let gaBagImgs = [];
 
 function init() {
-    let canvas = document.getElementById("fishingPlay");
-    canvas.width = goGame.width;
-    canvas.height = 360;
-    goContext = canvas.getContext("2d");
+    goGame = new Game();
+    goLake = new Lake();
+    goCast = new Cast();
+
     goFloat.img = new Image();
     goFloat.img.src = 'img/float.png';
-    goCast.img = new Image();
-    goCast.img.src = 'img/rod.png';
 
     // объект который задаёт игровое поле
-    goGame.field = new Rect(goGame.color, 0, 0, goGame.width, goGame.height);
-    goGame.bagfield = new Rect('gray', 0, goGame.height, goGame.width, 40);
+    goBag.field = new Rect(goBag.color, goBag.x, goBag.y, goBag.width, goBag.height, goGame.context);
 
-    canvas.onclick = allClicks;
-    goFloat.img.onload = () => {
-        goCast.img.onload = () => {
-            setInterval(play, 1000 / 50);
-        };
-    };
-    window.axios.get('/server/index.php?method=getBagItems')
+    setInterval(play, goGame.timeout);
+    /*window.axios.get('/server/index.php?method=getBagItems')
         .then(response => {
             response.data.forEach(function (element, index) {
                 gaBagImgs[index] = {};
@@ -65,36 +58,39 @@ function init() {
                 gaBagImgs[index].goImg.src = element.src;
             });
             console.log(gaBagImgs);
-        });
+        });*/
 }
+
 function play(){
-    goGame.field.draw();
-    goGame.bagfield.draw();
+    goGame.context.drawImage(goLake.img, goLake.x, goLake.y);
+    goGame.context.drawImage(goCast.img, goCast.x, goCast.y);
+    goBag.field.draw();
+    /*
     if (gaBagImgs[0]){
-        goContext.drawImage(gaBagImgs[0].goImg, goGame.width - 40, goGame.height);
+        goGame.context.drawImage(gaBagImgs[0].goImg, goGame.width - 40, goGame.height);
         // настройки текста
-        goContext.font = 'bold 20px courier';
-        goContext.textAlign = 'center';
-        goContext.textBaseline = 'top';
-        goContext.fillStyle = 'white';
-        goContext.fillText(1,  goGame.width - 10, 340);
+        goGame.context.font = 'bold 20px courier';
+        goGame.context.textAlign = 'center';
+        goGame.context.textBaseline = 'top';
+        goGame.context.fillStyle = 'white';
+        goGame.context.fillText(1,  goGame.width - 10, 340);
     }
     if (gaBagImgs[1]) {
-        goContext.drawImage(gaBagImgs[1].goImg, goGame.width - 80, goGame.height);
+        goGame.context.drawImage(gaBagImgs[1].goImg, goGame.width - 80, goGame.height);
     }
     biting();
     autoStopBiting();
     showFloat();
-    goContext.drawImage(goCast.img, goGame.width - goCast.width, 0);
+    goGame.context.drawImage(goCast.img, goGame.width - goCast.width, 0);*/
 }
 function clickFloat(poE){
     if (
-        poE.x > goFloat.x &&
-        poE.x <= (goFloat.x + goFloat.width) &&
-        poE.y > goFloat.y &&
-        poE.y <= (goFloat.y + goFloat.height)
+        poE.x > goCast.x &&
+        poE.x <= (goCast.x + goCast.width) &&
+        poE.y > goCast.y &&
+        poE.y <= (goCast.y + goCast.height)
     ){
-        gbShowFloat = false;
+        goFloat.show = false;
         window.axios.get('/server/index.php?method=getBagItems')
             .then(response => console.log(response.data));
         gaBagImgs[0].gnCount = 1;
@@ -107,13 +103,13 @@ function clickCast(poE){
         poE.y > 0 &&
         poE.y <= goGame.height
     ){
-        gbShowFloat = true;
         goFloat.x =  getXFloat();
         goFloat.y =  getYFloat();
-        goFloat.bitingRadius = goFloat.radius;
+        goFloat.show = true;
+        /*goFloat.bitingRadius = goFloat.radius;
         goTimeBitingStart = new Date().getTime() + randn_bm() * 10000;
         goTimeBitingEnd = null;
-        goFloat.gbBiting = false;
+        goFloat.gbBiting = false;*/
     }
 }
 // Нормальное распеределение от 0 до 1 с МО 0.5
@@ -154,7 +150,7 @@ function getYFloat() {
 // показывает поплавок
 function showFloat(){
     if (gbShowFloat){
-        goContext.drawImage(goFloat.img, goFloat.x, goFloat.y);
+        goGame.context.drawImage(goFloat.img, goFloat.x, goFloat.y);
         bitingAnimate();
     }
 }
@@ -167,8 +163,8 @@ function autoStopBiting() {
 // анимация поклёвки
 function bitingAnimate() {
     if (goFloat.gbBiting) {
-        goContext.beginPath();
-        goContext.arc(
+        goGame.context.beginPath();
+        goGame.context.arc(
             goFloat.x + goFloat.width / 2,
             goFloat.y + goFloat.height / 2,
             goFloat.bitingRadius++,
@@ -176,6 +172,6 @@ function bitingAnimate() {
             Math.PI * 2,
             true
         );
-        goContext.stroke();
+        goGame.context.stroke();
     }
 }
