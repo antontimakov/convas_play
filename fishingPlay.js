@@ -10,14 +10,8 @@ let goLake = null;
 let goCast = null;
 
 // конфигурация сумки
-let goBag = {
-    x: 0,
-    y: 320,
-    width: 520, //
-    height: 40,
-    color: 'gray',
-    field: null
-};
+let goBag = null;
+
 // конфигурация поплавка
 let goFloat = {
     x: 0,
@@ -42,12 +36,10 @@ function init() {
     goGame = new Game();
     goLake = new Lake();
     goCast = new Cast();
+    goBag = new Bag();
 
     goFloat.img = new Image();
     goFloat.img.src = 'img/float.png';
-
-    // объект который задаёт игровое поле
-    goBag.field = new Rect(goBag.color, goBag.x, goBag.y, goBag.width, goBag.height, goGame.context);
 
     setInterval(play, goGame.timeout);
     /*window.axios.get('/server/index.php?method=getBagItems')
@@ -64,7 +56,7 @@ function init() {
 function play(){
     goLake.draw();
     goCast.draw();
-    goBag.field.draw();
+    goBag.draw();
     /*
     if (gaBagImgs[0]){
         goGame.context.drawImage(gaBagImgs[0].goImg, goGame.width - 40, goGame.height);
