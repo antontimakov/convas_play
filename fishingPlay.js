@@ -96,22 +96,6 @@ function clickFloat(poE){
         gaBagImgs[0].gnCount = 1;
     }
 }
-function clickCast(poE){
-    if (
-        (poE.x > (goGame.width - goCast.width)) &&
-        poE.x <= goGame.width &&
-        poE.y > 0 &&
-        poE.y <= goGame.height
-    ){
-        goFloat.x =  getXFloat();
-        goFloat.y =  getYFloat();
-        goFloat.show = true;
-        /*goFloat.bitingRadius = goFloat.radius;
-        goTimeBitingStart = new Date().getTime() + randn_bm() * 10000;
-        goTimeBitingEnd = null;
-        goFloat.gbBiting = false;*/
-    }
-}
 // Нормальное распеределение от 0 до 1 с МО 0.5
 function randn_bm() {
     let u = 0, v = 0;
@@ -136,8 +120,8 @@ function biting(){
 }
 // вызывает все клики
 function allClicks(poE){
-    clickFloat(poE);
-    clickCast(poE);
+    //clickFloat(poE);
+    goCast.click(poE);
 }
 // вычисляет х координату броска
 function getXFloat() {
