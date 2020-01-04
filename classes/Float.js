@@ -13,67 +13,76 @@ class Float extends ImgContainer {
             startRadius: 20,
             curRadius: 0,
             timeBitingStart: null,
-            timeBitingEnd: null
+            timeBitingEnd: null,
+            moStartBiting: 5000,
+            moBiting: 5000
         }
     }
     click(){
         if (
-            poE.x > goCast.x &&
-            poE.x <= (goCast.x + goCast.width) &&
-            poE.y > goCast.y &&
-            poE.y <= (goCast.y + goCast.height)
+            poE.x > this.x &&
+            poE.x <= (this.x + this.width) &&
+            poE.y > this.y &&
+            poE.y <= (this.y + this.height)
         ){
-            goFloat.show = false;
+            this.show = false;
             window.axios.get('/server/index.php?method=getFish')
                 .then(response => console.log(response.data));
         }
     }
+    draw(){
+        if (this.show) {
+            super.draw();
+            this.doBiting();
+        }
+    }
     // событие клевание рыбы
-    biting(){
-        /*if (
-            goTimeBitingStart &&
-            (goTimeBitingStart < new Date().getTime()) &&
-            gbShowFloat &&
-            !goTimeBitingEnd // чтобы функция выполнялась 1 раз за поклёвку
+    doBiting(){
+        if (
+            this.animate.timeBitingStart &&
+            (this.animate.timeBitingStart <= new Date().getTime())
         ){
-            goTimeBitingEnd = new Date().getTime() + randn_bm() * 10000;
-            goFloat.gbBiting = true;
-        }*/
-    }
-    // вычисляет х координату броска
-    getXFloat() {
-        return Math.random() * (goGame.width - goFloat.width - goCast.width);
-    }
-    // вычисляет у координату броска
-    getYFloat() {
-        return Math.random() * (goGame.height - goFloat.height);
-    }
-    // показывает поплавок
-    showFloat(){
-        if (gbShowFloat){
-            goGame.context.drawImage(goFloat.img, goFloat.x, goFloat.y);
-            bitingAnimate();
+            this.animate.timeBitingEnd = new Date().getTime() + randn_bm() * this.animate.moBiting;
+            this.biting = true;
+            this.animate.timeBitingStart = null; // чтобы не попадать сюда при каждой перерисовке
+        }
+        else {
+            if (this.animate.timeBitingEnd &&
+                (this.animate.timeBitingEnd <= new Date().getTime())
+            ){
+                this.show = false;
+            }
+        }
+        if (this.biting){
+            this.bitingAnimate();
         }
     }
-    // рыба перестала клевать
-    autoStopBiting() {
-        if (goTimeBitingEnd && (goTimeBitingEnd < new Date().getTime()) && gbShowFloat){
-            gbShowFloat = false;
-        }
+    doShow(){
+        this.show = true;
+        this.setCoordinates();
+        this.startWaitingBiting();
+    }
+    setCoordinates() {
+        this.x = Math.random() * (goLake.width - this.width);
+        this.y = Math.random() * (goLake.height - this.height);
+    }
+    startWaitingBiting(){
+        this.animate.curRadius = this.animate.startRadius;
+        this.animate.timeBitingStart = new Date().getTime() + randn_bm() * this.animate.moStartBiting * 2;
+        this.animate.timeBitingEnd = null;
+        this.biting = false;
     }
     // анимация поклёвки
     bitingAnimate() {
-        if (goFloat.gbBiting) {
-            goGame.context.beginPath();
-            goGame.context.arc(
-                goFloat.x + goFloat.width / 2,
-                goFloat.y + goFloat.height / 2,
-                goFloat.bitingRadius++,
-                0,
-                Math.PI * 2,
-                true
-            );
-            goGame.context.stroke();
-        }
+        goGame.context.beginPath();
+        goGame.context.arc(
+            this.x + this.width / 2,
+            this.y + this.height / 2,
+            this.animate.curRadius++,
+            0,
+            Math.PI * 2,
+            true
+        );
+        goGame.context.stroke();
     }
 }

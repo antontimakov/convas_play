@@ -15,13 +15,7 @@ class Cast extends ImgContainer {
             poE.y > this.y &&
             poE.y <= (this.y + this.height)
         ){
-            /*goFloat.x =  getXFloat();
-            goFloat.y =  getYFloat();
-            goFloat.show = true;*/
-            /*goFloat.bitingRadius = goFloat.radius;
-            goTimeBitingStart = new Date().getTime() + randn_bm() * 10000;
-            goTimeBitingEnd = null;
-            goFloat.gbBiting = false;*/
+            goFloat.doShow();
         }
     }
 }

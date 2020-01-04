@@ -25,10 +25,7 @@ function play(){
     goLake.draw();
     goCast.draw();
     goBag.draw();
-    /*biting();
-    autoStopBiting();
-    showFloat();
-    goGame.context.drawImage(goCast.img, goGame.width - goCast.width, 0);*/
+    goFloat.draw();
 }
 
 // Нормальное распеределение от 0 до 1 с МО 0.5
