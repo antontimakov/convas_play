@@ -39,7 +39,7 @@
                     SELECT
                         id,
                         name,
-                        src
+                        src_full
                     FROM public.titem
                     WHERE id = {$item}
                 ;";

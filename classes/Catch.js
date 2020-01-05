@@ -7,6 +7,15 @@ class Catch extends ImgContainer {
         this.width = 180;
         this.height = 92;
         this.show = false;
+        this.animate = {
+            timeHide: null,
+            moHide: 5000
+        };
+        this.text = {
+            x: 260,
+            y: 342,
+            text: ''
+        }
     }
     draw(){
         if (this.show) {
@@ -16,7 +25,20 @@ class Catch extends ImgContainer {
             goGame.context.textAlign = 'center';
             goGame.context.textBaseline = 'top';
             goGame.context.fillStyle = 'white';
-            goGame.context.fillText('Платва',  260, 342);
+            goGame.context.fillText(this.text.text,  this.text.x, this.text.y);
+            this.hideAnimate();
         }
+    }
+    hideAnimate(){
+        if (!this.animate.timeHide){
+            this.animate.timeHide = new Date().getTime() + randn_bm() * this.animate.moHide;
+        }
+        else{
+            if (this.animate.timeHide <= new Date().getTime()){
+                this.show = false;
+                this.animate.timeHide = null;
+            }
+        }
+
     }
 }
