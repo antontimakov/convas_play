@@ -63,6 +63,7 @@ class Float extends ImgContainer {
                 (this.animate.timeBitingEnd <= new Date().getTime())
             ){
                 this.show = false;
+                goMsg.add('Рыбка сорвалась!');
             }
         }
         if (this.biting){
