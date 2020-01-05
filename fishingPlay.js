@@ -1,6 +1,6 @@
 "use strict";
 
-let goGame, goLake, goCast, goBag, goFloat, goCatch;
+let goGame, goLake, goCast, goBag, goFloat, goCatch, goMsg;
 
 function init() {
     // конфигурация игры
@@ -15,6 +15,8 @@ function init() {
     goFloat = new Float();
     // конфигурация улова
     goCatch = new Catch();
+    // конфигурация улова
+    goMsg = new Msg();
 
     setInterval(play, goGame.timeout);
 }
@@ -25,6 +27,7 @@ function play(){
     goFloat.draw();
     goBag.draw();
     goCatch.draw();
+    goMsg.draw();
 }
 
 // Нормальное распеределение от 0 до 1 с МО 0.5

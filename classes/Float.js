@@ -36,7 +36,7 @@ class Float extends ImgContainer {
                     });
             }
             else{
-                // не клюнула
+                goMsg.add('Ещё не клюнуло!');
             }
             this.show = false;
         }
