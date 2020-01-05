@@ -1,8 +1,8 @@
 // класс определяющий параметры игрового поля
 class Game {
     constructor() {
-        this.width = 520;
-        this.height = 360;
+        this.width = 745;
+        this.height = 498;
         this.timeout = 1000 / 50;
         this.context = this.create();
     }

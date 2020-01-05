@@ -4,8 +4,8 @@ class Lake extends ImgContainer {
         super();
         this.x = 0;
         this.y = 0;
-        this.width = 480;
-        this.height = 320;
+        this.width = 631;
+        this.height = 458;
         this.img.src = 'img/lake.png';
     }
 }
