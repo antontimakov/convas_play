@@ -37,8 +37,3 @@ function randn_bm() {
     if (num > 1 || num < 0) return randn_bm();
     return num;
 }
-// вызывает все клики
-function allClicks(poE){
-    goFloat.click(poE);
-    goCast.click(poE);
-}
