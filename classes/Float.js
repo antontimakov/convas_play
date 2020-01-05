@@ -95,6 +95,7 @@ class Float extends ImgContainer {
             Math.PI * 2,
             true
         );
+        goGame.context.strokeStyle = 'blue';
         goGame.context.stroke();
     }
     drawLine(){
