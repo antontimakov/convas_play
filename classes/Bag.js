@@ -8,7 +8,22 @@ class Bag {
         this.color = 'gray';
         this.field = new Rect(this.color, this.x, this.y, this.width, this.height, goGame.context);
         this.imgs = [];
-        this.experience = null;
+        this.experience = {
+            value: null,
+            color: 'red',
+            x: 0,
+            y: 498,
+            width: 0,
+            height: 2,
+            field: null
+        };
+        this.experience.field = new Rect(
+            this.experience.color,
+            this.experience.x,
+            this.experience.y,
+            this.experience.width,
+            this.experience.height,
+            goGame.context)
         this.init();
     }
     draw(){
@@ -31,14 +46,15 @@ class Bag {
             goGame.context.fillStyle = 'white';
             goGame.context.fillText(this.imgs[3].count,  this.x + this.width - 60, this.y + 20);
         }
-        if (this.experience){
+        if (this.experience.value){
             // настройки текста
             goGame.context.font = 'bold 20px courier';
             goGame.context.textAlign = 'center';
             goGame.context.textBaseline = 'top';
             goGame.context.fillStyle = 'white';
-            goGame.context.fillText(this.experience,  30, this.y + 20);
+            goGame.context.fillText(this.experience.value, 30, this.y + 20);
         }
+        this.experience.field.draw();
     }
     init(){
         let loMe = this;
@@ -53,7 +69,8 @@ class Bag {
             });
         window.axios.get('/server/index.php?method=getExp')
             .then(response => {
-                this.experience = response.data[0].experience;
+                this.experience.value = response.data[0].experience;
+                this.experience.field.width = this.width / 100 * response.data[0].experience;
             });
     }
 }
