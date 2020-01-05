@@ -16,7 +16,7 @@ class Float extends ImgContainer {
             timeBitingEnd: null,
             moStartBiting: 5000,
             moBiting: 5000
-        }
+        };
     }
     click(poE){
         if (
@@ -45,6 +45,7 @@ class Float extends ImgContainer {
         if (this.show) {
             super.draw();
             this.doBiting();
+            this.drawLine();
         }
     }
     // событие клевание рыбы
@@ -94,6 +95,14 @@ class Float extends ImgContainer {
             Math.PI * 2,
             true
         );
+        goGame.context.stroke();
+    }
+    drawLine(){
+        goGame.context.beginPath();
+        goGame.context.moveTo(530, 66);
+        goGame.context.lineTo(this.x + this.width / 2, this.y);
+        goGame.context.closePath();
+        goGame.context.strokeStyle = '#dddddd';
         goGame.context.stroke();
     }
 }
