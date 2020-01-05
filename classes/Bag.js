@@ -8,6 +8,7 @@ class Bag {
         this.color = 'gray';
         this.field = new Rect(this.color, this.x, this.y, this.width, this.height, goGame.context);
         this.imgs = [];
+        this.experience = null;
         this.init();
     }
     draw(){
@@ -30,6 +31,14 @@ class Bag {
             goGame.context.fillStyle = 'white';
             goGame.context.fillText(this.imgs[3].count,  this.x + this.width - 60, this.y + 20);
         }
+        if (this.experience){
+            // настройки текста
+            goGame.context.font = 'bold 20px courier';
+            goGame.context.textAlign = 'center';
+            goGame.context.textBaseline = 'top';
+            goGame.context.fillStyle = 'white';
+            goGame.context.fillText(this.experience,  30, this.y + 20);
+        }
     }
     init(){
         let loMe = this;
@@ -41,6 +50,10 @@ class Bag {
                     loMe.imgs[element.id].img.src = element.src;
                     loMe.imgs[element.id].count = element.icount;
                 });
+            });
+        window.axios.get('/server/index.php?method=getExp')
+            .then(response => {
+                this.experience = response.data[0].experience;
             });
     }
 }

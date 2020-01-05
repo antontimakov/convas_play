@@ -27,7 +27,8 @@
                     $item = 1;
                 }
                 $query = "
-                    WITH a AS (
+                    WITH
+                    inbag AS (
                         INSERT INTO public.tbag (
                             user_id,
                             item_id
@@ -35,6 +36,12 @@
                             1,
                             {$item}
                         )
+                    ),
+                    exp AS (
+                        UPDATE public.tuser AS u
+                        SET experience = u.experience + i.experience
+                        FROM public.titem AS i
+                        WHERE i.id = {$item}
                     )
                     SELECT
                         id,
@@ -42,6 +49,14 @@
                         src_full
                     FROM public.titem
                     WHERE id = {$item}
+                ;";
+                break;
+            case 'getExp':
+                $query = "
+                    SELECT
+                        experience
+                    FROM public.tuser
+                    WHERE id = 1
                 ;";
                 break;
         }
