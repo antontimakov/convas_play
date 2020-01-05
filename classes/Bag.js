@@ -15,20 +15,20 @@ class Bag {
         if (this.imgs[1]){
             goGame.context.drawImage(this.imgs[1].img, this.x + this.width - 40, this.y);
             // настройки текста
-            goGame.context.font = 'bold 20px courier';
+            goGame.context.font = 'bold 16px courier';
             goGame.context.textAlign = 'center';
             goGame.context.textBaseline = 'top';
             goGame.context.fillStyle = 'white';
-            goGame.context.fillText(this.imgs[1].count,  this.x + this.width - 10, this.y + 20);
+            goGame.context.fillText(this.imgs[1].count,  this.x + this.width - 20, this.y + 20);
         }
         if (this.imgs[3]){
             goGame.context.drawImage(this.imgs[3].img, this.x + this.width - 80, this.y);
             // настройки текста
-            goGame.context.font = 'bold 20px courier';
+            goGame.context.font = 'bold 16px courier';
             goGame.context.textAlign = 'center';
             goGame.context.textBaseline = 'top';
             goGame.context.fillStyle = 'white';
-            goGame.context.fillText(this.imgs[3].count,  this.x + this.width - 50, this.y + 20);
+            goGame.context.fillText(this.imgs[3].count,  this.x + this.width - 60, this.y + 20);
         }
     }
     init(){

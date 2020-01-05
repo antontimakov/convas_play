@@ -1,22 +1,20 @@
 "use strict";
 
-// конфигурация игры
-let goGame = null;
-// конфигурация области забрасывания
-let goLake = null;
-// конфигурация кнопки заброса
-let goCast = null;
-// конфигурация сумки
-let goBag = null;
-// конфигурация поплавка
-let goFloat = null;
+let goGame, goLake, goCast, goBag, goFloat, goCatch;
 
 function init() {
+    // конфигурация игры
     goGame = new Game();
+    // конфигурация области забрасывания
     goLake = new Lake();
+    // конфигурация кнопки заброса
     goCast = new Cast();
+    // конфигурация сумки
     goBag = new Bag();
+    // конфигурация поплавка
     goFloat = new Float();
+    // конфигурация улова
+    goCatch = new Catch();
 
     setInterval(play, goGame.timeout);
 }
@@ -26,6 +24,7 @@ function play(){
     goCast.draw();
     goFloat.draw();
     goBag.draw();
+    goCatch.draw();
 }
 
 // Нормальное распеределение от 0 до 1 с МО 0.5

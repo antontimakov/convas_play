@@ -29,7 +29,10 @@ class Float extends ImgContainer {
                 this.show = false;
                 window.axios.get('/server/index.php?method=getFish')
                     .then(response => {
+                        console.log(response.data[0]);
                         goBag.init();
+                        goCatch.img.src = '/img/fish1_full.png';
+                        goCatch.show = true;
                     });
             }
             else{
