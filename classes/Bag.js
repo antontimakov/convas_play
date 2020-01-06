@@ -8,6 +8,11 @@ class Bag {
         this.color = 'gray';
         this.field = new Rect(this.color, this.x, this.y, this.width, this.height, goGame.context);
         this.imgs = [];
+        this.cell = {
+            width: 40,
+            fakePaddingRightText: 20,
+            fakePaddingTopText: 20
+        };
         this.experience = {
             value: null,
             lvl: null,
@@ -30,24 +35,19 @@ class Bag {
     }
     draw(){
         this.field.draw();
-        if (this.imgs[1]){
-            goGame.context.drawImage(this.imgs[1].img, this.x + this.width - 40, this.y);
+        let lnNum = 0;
+        this.imgs.forEach((element) => {
+            goGame.context.drawImage(element.img, this.x + this.width - this.cell.width * ++lnNum, this.y);
             // настройки текста
             goGame.context.font = 'bold 16px courier';
             goGame.context.textAlign = 'center';
             goGame.context.textBaseline = 'top';
             goGame.context.fillStyle = 'white';
-            goGame.context.fillText(this.imgs[1].count,  this.x + this.width - 20, this.y + 20);
-        }
-        if (this.imgs[3]){
-            goGame.context.drawImage(this.imgs[3].img, this.x + this.width - 80, this.y);
-            // настройки текста
-            goGame.context.font = 'bold 16px courier';
-            goGame.context.textAlign = 'center';
-            goGame.context.textBaseline = 'top';
-            goGame.context.fillStyle = 'white';
-            goGame.context.fillText(this.imgs[3].count,  this.x + this.width - 60, this.y + 20);
-        }
+            goGame.context.fillText(
+                element.count,
+                this.x + this.width - this.cell.fakePaddingRightText - this.cell.width * (lnNum - 1),
+                this.y + this.cell.fakePaddingTopText);
+        });
         if (this.experience.value){
             // настройки текста
             goGame.context.font = 'bold 20px courier';
@@ -72,7 +72,7 @@ class Bag {
         let loMe = this;
         window.axios.get('/server/index.php?method=getBagItems')
             .then(response => {
-                response.data.forEach(function (element) {
+                response.data.forEach((element) => {
                     loMe.imgs[element.id] = {};
                     loMe.imgs[element.id].img = new Image();
                     loMe.imgs[element.id].img.src = element.src;
