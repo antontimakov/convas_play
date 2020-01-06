@@ -10,7 +10,9 @@ class Bag {
         this.imgs = [];
         this.experience = {
             value: null,
+            lvl: null,
             color: 'red',
+            colorStart: 'white',
             x: 0,
             y: 498,
             width: 0,
@@ -23,7 +25,7 @@ class Bag {
             this.experience.y,
             this.experience.width,
             this.experience.height,
-            goGame.context)
+            goGame.context);
         this.init();
     }
     draw(){
@@ -52,9 +54,19 @@ class Bag {
             goGame.context.textAlign = 'center';
             goGame.context.textBaseline = 'top';
             goGame.context.fillStyle = 'white';
-            goGame.context.fillText(this.experience.value, 30, this.y + 20);
+            goGame.context.fillText(
+                `Уровень ${this.experience.lvl} (${this.experience.value})`,
+                100,
+                this.y + 20
+            );
+            let lnTempWidth = this.experience.field.width;
+            this.experience.field.width = this.width;
+            this.experience.field.color = this.experience.colorStart;
+            this.experience.field.draw(); // Закрашиваем всю полосу опыта цветом по умолчанию
+            this.experience.field.width = lnTempWidth;
+            this.experience.field.color = this.experience.color;
+            this.experience.field.draw();
         }
-        this.experience.field.draw();
     }
     init(){
         let loMe = this;
@@ -69,8 +81,12 @@ class Bag {
             });
         window.axios.get('/server/index.php?method=getExp')
             .then(response => {
-                this.experience.value = response.data[0].experience;
-                this.experience.field.width = this.width / 100 * response.data[0].experience;
+                this.experience.value = response.data.experience;
+                this.experience.lvl = response.data.lvl;
+                this.experience.field.width =
+                    this.width /
+                    (response.data.lvlEnd - response.data.lvlStart) *
+                    (response.data.experience - response.data.lvlStart);
             });
     }
 }
