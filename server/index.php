@@ -9,14 +9,11 @@
                         i.id,
                         i.name,
                         i.src,
-                        COUNT (*) AS icount
+                        b.bcount
                     FROM public.tuser AS u
                     INNER JOIN public.tbag AS b ON (u.id = b.user_id)
                     INNER JOIN public.titem AS i ON (b.item_id = i.id)
-                    GROUP BY
-                        i.id,
-                        i.name,
-                        i.src
+                    WHERE u.id = 1
                 ;";
                 break;
             case 'getFish':
@@ -28,22 +25,37 @@
                     $item = 1;
                 }
                 $query = "
-                    WITH
-                    inbag AS (
-                        INSERT INTO public.tbag (
-                            user_id,
-                            item_id
-                        ) VALUES (
-                            1,
-                            {$item}
-                        )
-                    ),
-                    exp AS (
-                        UPDATE public.tuser AS u
-                        SET experience = u.experience + i.experience
-                        FROM public.titem AS i
-                        WHERE i.id = {$item}
+                    INSERT INTO public.tbag (
+                        user_id,
+                        item_id
+                    ) SELECT 
+                        1,
+                        {$item}
+                    WHERE NOT EXISTS (
+                        SELECT 1
+                        FROM public.tbag
+                        WHERE
+                            user_id = 1 AND
+                            item_id = {$item}
                     )
+                ;";
+                requestByQuery($goConn, $query);
+                $query = "
+                    UPDATE public.tbag
+                    SET bcount = bcount + 1
+                    WHERE 
+                        user_id = 1 AND
+                        item_id = {$item}
+                ;";
+                requestByQuery($goConn, $query);
+                $query = "
+                    UPDATE public.tuser AS u
+                    SET experience = u.experience + i.experience
+                    FROM public.titem AS i
+                    WHERE i.id = {$item}
+                ;";
+                requestByQuery($goConn, $query);
+                $query = "
                     SELECT
                         id,
                         name,

@@ -76,7 +76,7 @@ class Bag {
                     loMe.imgs[element.id] = {};
                     loMe.imgs[element.id].img = new Image();
                     loMe.imgs[element.id].img.src = element.src;
-                    loMe.imgs[element.id].count = element.icount;
+                    loMe.imgs[element.id].count = element.bcount;
                 });
             });
         window.axios.get('/server/index.php?method=getExp')
