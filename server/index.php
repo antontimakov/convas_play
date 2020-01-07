@@ -17,13 +17,18 @@
                 ;";
                 break;
             case 'getFish':
-                $item = rand (0,1000);
-                if ($item > 900){
-                    $item = 3;
-                }
-                else {
-                    $item = 1;
-                }
+                $query = "
+                    SELECT DISTINCT ON (item_type_id)
+                        i.id,
+                        it.probability
+                    FROM public.titem AS i
+                    INNER JOIN public.titem_type AS it ON (i.item_type_id = it.id)
+                    ORDER BY
+                        item_type_id,
+                        RANDOM()
+                ";
+                $laRes = requestByQuery($goConn, $query);
+                $item = idByRand($laRes);
                 $query = "
                     INSERT INTO public.tbag (
                         user_id,
@@ -112,6 +117,16 @@
                 $loRes->lvlStart = $loRes->lvlEnd;
                 $loRes->lvlEnd = $lnNewLvlEnd;
                 ++$loRes->lvl;
+            }
+        }
+    }
+    function idByRand($paRes){
+        $lnRand = rand (1,100);
+        $lnSumProb = 0; // сумма вероятностей
+        foreach ($paRes as $paRe) {
+            $lnSumProb += $paRe['probability'];
+            if ($lnSumProb > $lnRand){
+                return $paRe['id'];
             }
         }
     }
