@@ -15,6 +15,7 @@ class Bag {
         };
         this.experience = {
             value: null,
+            lvlEnd: null,
             lvl: null,
             color: 'red',
             colorStart: 'white',
@@ -55,7 +56,7 @@ class Bag {
             goGame.context.textBaseline = 'top';
             goGame.context.fillStyle = 'white';
             goGame.context.fillText(
-                `Уровень ${this.experience.lvl} (${this.experience.value})`,
+                `Ур ${this.experience.lvl} (${this.experience.value}/${this.experience.lvlEnd})`,
                 100,
                 this.y + 20
             );
@@ -82,6 +83,7 @@ class Bag {
         window.axios.get('/server/index.php?method=getExp')
             .then(response => {
                 this.experience.value = response.data.experience;
+                this.experience.lvlEnd = response.data.lvlEnd;
                 this.experience.lvl = response.data.lvl;
                 this.experience.field.width =
                     this.width /
