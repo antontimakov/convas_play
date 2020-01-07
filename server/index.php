@@ -120,6 +120,7 @@
                 ++$loRes->lvl;
             }
         }
+        return false;
     }
     function idByRand($paRes){
         $lnRand = rand (0,99);
@@ -130,4 +131,5 @@
                 return $paRe['id'];
             }
         }
+        return false;
     }
