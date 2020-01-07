@@ -18,13 +18,14 @@
                 break;
             case 'getFish':
                 $query = "
-                    SELECT DISTINCT ON (item_type_id)
+                     SELECT DISTINCT ON (it.prior)
                         i.id,
-                        it.probability
+                        it.probability,
+                        it.prior
                     FROM public.titem AS i
                     INNER JOIN public.titem_type AS it ON (i.item_type_id = it.id)
                     ORDER BY
-                        item_type_id,
+                        it.prior,
                         RANDOM()
                 ";
                 $laRes = requestByQuery($goConn, $query);
@@ -121,7 +122,7 @@
         }
     }
     function idByRand($paRes){
-        $lnRand = rand (1,100);
+        $lnRand = rand (0,99);
         $lnSumProb = 0; // сумма вероятностей
         foreach ($paRes as $paRe) {
             $lnSumProb += $paRe['probability'];
