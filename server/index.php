@@ -114,7 +114,7 @@
                 return $loRes;
             }
             else {
-                $lnNewLvlEnd = $loRes->lvlEnd + ($loRes->lvlEnd - $loRes->lvlStart) * 1.3;
+                $lnNewLvlEnd = floor($loRes->lvlEnd + ($loRes->lvlEnd - $loRes->lvlStart) * 1.3);
                 $loRes->lvlStart = $loRes->lvlEnd;
                 $loRes->lvlEnd = $lnNewLvlEnd;
                 ++$loRes->lvl;

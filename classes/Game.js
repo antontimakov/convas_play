@@ -22,13 +22,17 @@ class Game {
     static chCursor(loConvas){
         return (poE)=>{
             if (
-                (poE.x > goCast.x &&
-                poE.y < goCast.height) ||
-                (goFloat.show &&
-                poE.x > goFloat.x &&
-                poE.x < (goFloat.x + goFloat.width) &&
-                poE.y > goFloat.y &&
-                poE.y < (goFloat.y + goFloat.height))
+                (
+                    poE.pageX > goCast.x &&
+                    poE.pageY < goCast.height
+                ) ||
+                (
+                    goFloat.show &&
+                    poE.pageX > goFloat.x &&
+                    poE.pageX < (goFloat.x + goFloat.width) &&
+                    poE.pageY > goFloat.y &&
+                    poE.pageY < (goFloat.y + goFloat.height)
+                )
             ) {
                 loConvas.style.cursor = 'pointer';
             }

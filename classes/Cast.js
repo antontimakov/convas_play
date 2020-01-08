@@ -10,10 +10,10 @@ class Cast extends ImgContainer {
     }
     click(poE){
         if (
-            poE.x > this.x &&
-            poE.x <= (this.x + this.width) &&
-            poE.y > this.y &&
-            poE.y <= (this.y + this.height)
+            poE.pageX > this.x &&
+            poE.pageX <= (this.x + this.width) &&
+            poE.pageY > this.y &&
+            poE.pageY <= (this.y + this.height)
         ){
             goFloat.doShow();
         }
