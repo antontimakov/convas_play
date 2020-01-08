@@ -114,7 +114,7 @@ class Float extends ImgContainer {
         goGame.context.arc(
             this.x + this.width / 2,
             this.y + this.height / 2,
-            this.animate.curRadius - pnDelta,
+            this.animate.curRadius - pnDelta + this.animate.startRadius,
             0,
             Math.PI * 2,
             true
