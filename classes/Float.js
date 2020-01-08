@@ -7,15 +7,21 @@ class Float extends ImgContainer {
         this.width = 40;
         this.height = 40;
         this.img.src = 'img/float.png';
-        this.show = false;
-        this.biting = false;
+        this.show = false; // показывать ли попловок
+        this.biting = false; // идёт ил поклёвка
         this.animate = {
-            startRadius: 20,
-            curRadius: 0,
-            timeBitingStart: null,
-            timeBitingEnd: null,
-            moStartBiting: 5000,
-            moBiting: 5000
+            startRadius: 20, // начальный радиус анимации
+            curRadius: 0, // текущий радиус во время анимации
+            timeBitingStart: null, // время начала поклёвки
+            timeBitingEnd: null, // время окончания поклёвки
+            moStartBiting: 5000, // МО от заброса до поклёвки
+            moBiting: 5000, // МО поклёвки
+            delta: 30 // кол-во кадров до следующей волны
+        };
+        this.line = { // леска
+            color: '#dddddd',
+            startX: 530,
+            startY: 66
         };
     }
     click(poE){
@@ -88,24 +94,32 @@ class Float extends ImgContainer {
     }
     // анимация поклёвки
     bitingAnimate() {
+        for (let lnDelta = 0; lnDelta <= 150; lnDelta += this.animate.delta){
+            if (this.animate.curRadius > lnDelta){
+                this.drawVawe(this, lnDelta);
+            }
+        }
+        this.animate.curRadius++;
+    }
+    drawLine(){
+        goGame.context.beginPath();
+        goGame.context.moveTo(this.line.startX, this.line.startY);
+        goGame.context.lineTo(this.x + this.width / 2, this.y);
+        goGame.context.closePath();
+        goGame.context.strokeStyle = this.line.color;
+        goGame.context.stroke();
+    }
+    drawVawe(poThis, pnDelta){
         goGame.context.beginPath();
         goGame.context.arc(
-            this.x + this.width / 2,
-            this.y + this.height / 2,
-            this.animate.curRadius++,
+            poThis.x + poThis.width / 2,
+            poThis.y + poThis.height / 2,
+            poThis.animate.curRadius - pnDelta,
             0,
             Math.PI * 2,
             true
         );
-        goGame.context.strokeStyle = 'blue';
-        goGame.context.stroke();
-    }
-    drawLine(){
-        goGame.context.beginPath();
-        goGame.context.moveTo(530, 66);
-        goGame.context.lineTo(this.x + this.width / 2, this.y);
-        goGame.context.closePath();
-        goGame.context.strokeStyle = '#dddddd';
+        goGame.context.strokeStyle = 'rgba(0, 0, 255, ' + (1 - (poThis.animate.curRadius - pnDelta)/100) + ')';
         goGame.context.stroke();
     }
 }
