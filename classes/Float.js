@@ -20,6 +20,7 @@ class Float extends ImgContainer {
     }
     click(poE){
         if (
+            this.show &&
             poE.x > this.x &&
             poE.x <= (this.x + this.width) &&
             poE.y > this.y &&
@@ -76,8 +77,8 @@ class Float extends ImgContainer {
         this.startWaitingBiting();
     }
     setCoordinates() {
-        this.x = Math.random() * (goLake.width - this.width);
-        this.y = Math.random() * (goLake.height - this.height);
+        this.x = Math.round(Math.random() * (goLake.width - this.width));
+        this.y = Math.round(Math.random() * (goLake.height - this.height));
     }
     startWaitingBiting(){
         this.animate.curRadius = this.animate.startRadius;
