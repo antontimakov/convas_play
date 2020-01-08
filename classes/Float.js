@@ -96,7 +96,7 @@ class Float extends ImgContainer {
     bitingAnimate() {
         for (let lnDelta = 0; lnDelta <= 150; lnDelta += this.animate.delta){
             if (this.animate.curRadius > lnDelta){
-                this.drawVawe(this, lnDelta);
+                this.drawVawe(lnDelta);
             }
         }
         this.animate.curRadius++;
@@ -109,17 +109,17 @@ class Float extends ImgContainer {
         goGame.context.strokeStyle = this.line.color;
         goGame.context.stroke();
     }
-    drawVawe(poThis, pnDelta){
+    drawVawe(pnDelta){
         goGame.context.beginPath();
         goGame.context.arc(
-            poThis.x + poThis.width / 2,
-            poThis.y + poThis.height / 2,
-            poThis.animate.curRadius - pnDelta,
+            this.x + this.width / 2,
+            this.y + this.height / 2,
+            this.animate.curRadius - pnDelta,
             0,
             Math.PI * 2,
             true
         );
-        goGame.context.strokeStyle = 'rgba(0, 0, 255, ' + (1 - (poThis.animate.curRadius - pnDelta)/100) + ')';
+        goGame.context.strokeStyle = 'rgba(0, 0, 255, ' + (1 - (this.animate.curRadius - pnDelta)/100) + ')';
         goGame.context.stroke();
     }
 }
