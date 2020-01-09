@@ -87,7 +87,7 @@ class Float extends ImgContainer {
         this.y = Math.round(Math.random() * (goLake.height - this.height));
     }
     startWaitingBiting(){
-        this.animate.curRadius = this.animate.startRadius;
+        this.animate.curRadius = 0;
         this.animate.timeBitingStart = new Date().getTime() + randn_bm() * this.animate.moStartBiting * 2;
         this.animate.timeBitingEnd = null;
         this.biting = false;
