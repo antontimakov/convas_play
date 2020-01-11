@@ -1,10 +1,12 @@
 "use strict";
 
-let goGame, goLake, goCast, goBag, goFloat, goCatch, goMsg;
+let goGame, goLake, goCast, goBag, goFloat, goCatch, goMsg, goAchievements;
 
 function init() {
     // конфигурация игры
     goGame = new Game();
+    // конфигурация достижений
+    goAchievements = new Achievements();
     // конфигурация области забрасывания
     goLake = new Lake();
     // конфигурация кнопки заброса
@@ -28,6 +30,7 @@ function play(){
     goBag.draw();
     goCatch.draw();
     goMsg.draw();
+    goAchievements.draw();
 }
 
 // Нормальное распеределение от 0 до 1 с МО 0.5
