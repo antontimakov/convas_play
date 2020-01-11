@@ -80,7 +80,7 @@ class Bag {
                     loMe.imgs[element.id].count = element.bcount;
                 });
             });
-        window.axios.get('/server/index.php?method=getExp')
+        window.axios.get('/server/index.php?method=getExperience')
             .then(response => {
                 this.experience.value = response.data.experience;
                 this.experience.lvlEnd = response.data.lvlEnd;
