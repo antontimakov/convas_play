@@ -18,7 +18,8 @@
         $response = pg_query( $loConn, "UPDATE public.tuser SET name = '{$loResp->body}' WHERE id=1" );
     }*/
     function tconnect(){
-        $loConn = pg_connect("host=localhost port=5500 dbname=convas_play user=postgres password=12345678") or die("Can't connect to database".pg_last_error());
+        $loConn = pg_connect("host=localhost port=5500 dbname=convas_play user=postgres password=12345678") or
+        die("Can't connect to database".pg_last_error());
         return $loConn;
     }
     function requestByQuery($goConn, $query){
