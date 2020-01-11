@@ -71,17 +71,17 @@ class Bag {
     }
     init(){
         let loMe = this;
-        window.axios.get('/server/index.php?method=getBagItems')
-            .then(response => {
-                response.data.forEach((element) => {
-                    loMe.imgs[element.id] = {};
-                    loMe.imgs[element.id].img = new Image();
-                    loMe.imgs[element.id].img.src = element.src;
-                    loMe.imgs[element.id].count = element.bcount;
-                });
+        TProxy.getFromServer('/server/index.php?method=getBagItems',
+        response => {
+            response.data.forEach((element) => {
+                loMe.imgs[element.id] = {};
+                loMe.imgs[element.id].img = new Image();
+                loMe.imgs[element.id].img.src = element.src;
+                loMe.imgs[element.id].count = element.bcount;
             });
-        window.axios.get('/server/index.php?method=getExperience')
-            .then(response => {
+        });
+        TProxy.getFromServer('/server/index.php?method=getExperience',
+        response => {
                 this.experience.value = response.data.experience;
                 this.experience.lvlEnd = response.data.lvlEnd;
                 this.experience.lvl = response.data.lvl;
@@ -89,6 +89,6 @@ class Bag {
                     this.width /
                     (response.data.lvlEnd - response.data.lvlStart) *
                     (response.data.experience - response.data.lvlStart);
-            });
+        });
     }
 }

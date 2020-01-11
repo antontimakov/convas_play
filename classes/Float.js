@@ -34,13 +34,15 @@ class Float extends ImgContainer {
         ){
             if (this.biting) {
                 this.show = false;
-                window.axios.get('/server/index.php?method=getFish')
-                    .then(response => {
+                TProxy.getFromServer('/server/index.php?method=getFish',
+                response => {
+                    response.data.forEach((element) => {
                         goBag.init();
                         goCatch.img.src = response.data[0].src_full;
                         goCatch.text.text = response.data[0].name;
                         goCatch.show = true;
                     });
+                });
             }
             else{
                 goMsg.add('Ещё не клюнуло!');
