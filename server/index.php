@@ -10,8 +10,11 @@
     DbProxy::tconnect();
     if ($method == 'GET') {
         if (function_exists($_GET['method'])){
-            $laRes = $_GET['method']();
+            $laResFromMethod = $_GET['method']();
         }
+        $laRes = array();
+        $laRes['data'] = $laResFromMethod;
+        $laRes['achievements'] = Achievements::$gaNewAchievements;
         echo json_encode($laRes);
     }
     /*if ($method == 'POST'){

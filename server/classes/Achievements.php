@@ -31,6 +31,7 @@ class Achievements{
         $laRes = DbProxy::requestByQuery($query);
         $lnCountItemsAfter = $laRes[0]['co'];
         if (self::$gnCountItemsBafore == 0 && $lnCountItemsAfter > 0){
+            self::addAchievement(1);
         }
         /*if (self::$gnCountItemsBafore == 99 && $lnCountItemsAfter > 99){
         }*/
