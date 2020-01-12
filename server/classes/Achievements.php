@@ -25,12 +25,17 @@ class Achievements{
             ";
             DbProxy::requestByQuery($query);
             $query = "
-                SELECT name
+                SELECT
+                    name,
+                    description
                 FROM public.tachievements
                 WHERE id = {$lnId};
             ";
             $laRes = DbProxy::requestByQuery($query);
-            array_push(self::$gaNewAchievements, $laRes[0]['name']);
+            $loAchievement = new StdClass();
+            $loAchievement->name = $laRes[0]['name'];
+            $loAchievement->description = $laRes[0]['description'];
+            array_push(self::$gaNewAchievements, $loAchievement);
         }
     }
     static function setCountItems(){
