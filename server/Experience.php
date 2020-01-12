@@ -1,12 +1,12 @@
 <?php
-function getExperience($goConn){
+function getExperience(){
     $query = "
                     SELECT
                         experience
                     FROM public.tuser
                     WHERE id = 1
                 ;";
-    $laRes = requestByQuery($goConn, $query);
+    $laRes = DbProxy::requestByQuery($query);
     return lvlByExperience($laRes[0]['experience']);
 }
 function lvlByExperience($pnExperience){

@@ -1,5 +1,5 @@
 <?php
-function getFish($goConn){
+function getFish(){
     // Выбираем по 1 случайному предмету из каждой группы
     $query = "
          SELECT DISTINCT ON (it.prior)
@@ -12,8 +12,9 @@ function getFish($goConn){
             it.prior,
             RANDOM()
     ";
-    $laRes = requestByQuery($goConn, $query);
+    $laRes = DbProxy::requestByQuery($query);
     $item = idByRand($laRes);
+    Achievements::setCountItems();
     // Вставляем запись в рюкзак, если там нет такого предмета
     $query = "
         INSERT INTO public.tbag (
@@ -30,7 +31,7 @@ function getFish($goConn){
                 item_id = {$item}
         )
     ;";
-    requestByQuery($goConn, $query);
+    DbProxy::requestByQuery($query);
     // Добавляем предмет в рюкзак (увеличиваем кол-во)
     $query = "
         UPDATE public.tbag
@@ -39,7 +40,8 @@ function getFish($goConn){
             user_id = 1 AND
             item_id = {$item}
     ;";
-    requestByQuery($goConn, $query);
+    DbProxy::requestByQuery($query);
+    Achievements::countItems();
     // Добавляем опыт пользователю
     $query = "
         UPDATE public.tuser AS u
@@ -47,7 +49,7 @@ function getFish($goConn){
         FROM public.titem AS i
         WHERE i.id = {$item}
     ;";
-    requestByQuery($goConn, $query);
+    DbProxy::requestByQuery($query);
     // Выбираем результат улова для отправки на клиент
     $query = "
         SELECT
@@ -57,7 +59,7 @@ function getFish($goConn){
         FROM public.titem
         WHERE id = {$item}
     ;";
-    return requestByQuery($goConn, $query);
+    return DbProxy::requestByQuery($query);
 }
 // Выбирает категорию в соответстви с распределением вероятностей
 function idByRand($paRes){

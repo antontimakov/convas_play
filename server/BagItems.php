@@ -1,5 +1,5 @@
 <?php
-function getBagItems($goConn){
+function getBagItems(){
     $query = "
         SELECT
             i.id,
@@ -11,5 +11,5 @@ function getBagItems($goConn){
         INNER JOIN public.titem AS i ON (b.item_id = i.id)
         WHERE u.id = 1
     ;";
-    return requestByQuery($goConn, $query);
+    return DbProxy::requestByQuery($query);
 }
