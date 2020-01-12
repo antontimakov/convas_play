@@ -42,6 +42,7 @@ function getFish(){
     ;";
     DbProxy::requestByQuery($query);
     Achievements::countItems();
+    Achievements::setExperience();
     // Добавляем опыт пользователю
     $query = "
         UPDATE public.tuser AS u
@@ -50,6 +51,7 @@ function getFish(){
         WHERE i.id = {$item}
     ;";
     DbProxy::requestByQuery($query);
+    Achievements::experience();
     // Выбираем результат улова для отправки на клиент
     $query = "
         SELECT

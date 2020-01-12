@@ -2,6 +2,7 @@
 class Achievements{
     static $gaNewAchievements = array();
     static $gnCountItemsBafore;
+    static $gnExperienceBafore;
 
     static function setCountItems(){
         // Считаем кол-во не мусорных предметов в интентаре до вылова
@@ -36,14 +37,43 @@ class Achievements{
         if (self::$gnCountItemsBafore == 0 && $lnCountItemsAfter > 0){
             self::addAchievement(1);
         }
-        if (self::$gnCountItemsBafore == 99 && $lnCountItemsAfter > 99){
+        if (self::$gnCountItemsBafore < 100 && $lnCountItemsAfter >= 100){
             self::addAchievement(2);
         }
-        if (self::$gnCountItemsBafore == 499 && $lnCountItemsAfter > 499){
+        if (self::$gnCountItemsBafore < 500 && $lnCountItemsAfter >= 500){
             self::addAchievement(3);
         }
-        if (self::$gnCountItemsBafore == 999 && $lnCountItemsAfter > 999){
+        if (self::$gnCountItemsBafore < 1000 && $lnCountItemsAfter >= 1000){
             self::addAchievement(4);
+        }
+    }
+    static function setExperience(){
+        $query = "
+            SELECT experience
+            FROM public.tuser
+            WHERE id = 1
+        ";
+        $laRes = DbProxy::requestByQuery($query);
+        self::$gnExperienceBafore = $laRes[0]['experience'];
+    }
+    static function experience(){
+        $query = "
+            SELECT experience
+            FROM public.tuser
+            WHERE id = 1
+        ";
+        $laRes = DbProxy::requestByQuery($query);
+        $lnExperienceAfter = $laRes[0]['experience'];
+        $lnLvlBefore = lvlByExperience(self::$gnExperienceBafore)->lvl;
+        $lnLvlAfter = lvlByExperience($lnExperienceAfter)->lvl;
+        if ($lnLvlBefore < 2 && $lnLvlAfter >= 2){
+            self::addAchievement(5);
+        }
+        if ($lnLvlBefore < 5 && $lnLvlAfter >= 5){
+            self::addAchievement(6);
+        }
+        if ($lnLvlBefore < 10 && $lnLvlAfter >= 10){
+            self::addAchievement(7);
         }
     }
     static function addAchievement($lnId){
