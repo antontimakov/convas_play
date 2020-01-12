@@ -24,9 +24,18 @@ class Achievements {
                 lnDeltaToNext += this.deltaToNext;
             });
         }
+        else {
+            if (this.time){
+                this.time = null;
+                this.clear();
+            }
+        }
     }
     add(poInfo){
         this.info.push(poInfo);
         this.time = new Date().getTime() + this.deley;
+    }
+    clear(){
+        this.info = [];
     }
 }
