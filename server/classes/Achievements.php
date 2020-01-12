@@ -39,6 +39,12 @@ class Achievements{
         if (self::$gnCountItemsBafore == 99 && $lnCountItemsAfter > 99){
             self::addAchievement(2);
         }
+        if (self::$gnCountItemsBafore == 499 && $lnCountItemsAfter > 499){
+            self::addAchievement(3);
+        }
+        if (self::$gnCountItemsBafore == 999 && $lnCountItemsAfter > 999){
+            self::addAchievement(4);
+        }
     }
     static function addAchievement($lnId){
         $query = "
