@@ -1,5 +1,6 @@
 <?php
 function getFish($goConn){
+    // Выбираем по 1 случайному предмету из каждой группы
     $query = "
          SELECT DISTINCT ON (it.prior)
             i.id,
@@ -13,6 +14,7 @@ function getFish($goConn){
     ";
     $laRes = requestByQuery($goConn, $query);
     $item = idByRand($laRes);
+    // Вставляем запись в рюкзак, если там нет такого предмета
     $query = "
         INSERT INTO public.tbag (
             user_id,
@@ -29,6 +31,7 @@ function getFish($goConn){
         )
     ;";
     requestByQuery($goConn, $query);
+    // Добавляем предмет в рюкзак (увеличиваем кол-во)
     $query = "
         UPDATE public.tbag
         SET bcount = bcount + 1
@@ -37,6 +40,7 @@ function getFish($goConn){
             item_id = {$item}
     ;";
     requestByQuery($goConn, $query);
+    // Добавляем опыт пользователю
     $query = "
         UPDATE public.tuser AS u
         SET experience = u.experience + i.experience
@@ -44,6 +48,7 @@ function getFish($goConn){
         WHERE i.id = {$item}
     ;";
     requestByQuery($goConn, $query);
+    // Выбираем результат улова для отправки на клиент
     $query = "
         SELECT
             id,
@@ -54,6 +59,7 @@ function getFish($goConn){
     ;";
     return requestByQuery($goConn, $query);
 }
+// Выбирает категорию в соответстви с распределением вероятностей
 function idByRand($paRes){
     $lnRand = rand (0,99);
     $lnSumProb = 0; // сумма вероятностей
