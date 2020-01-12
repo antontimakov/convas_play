@@ -73,7 +73,7 @@ class Bag {
         let loMe = this;
         TProxy.getFromServer('/server/index.php?method=getBagItems',
         response => {
-            response.data.forEach((element) => {
+            response.forEach((element) => {
                 loMe.imgs[element.id] = {};
                 loMe.imgs[element.id].img = new Image();
                 loMe.imgs[element.id].img.src = element.src;
@@ -82,13 +82,13 @@ class Bag {
         });
         TProxy.getFromServer('/server/index.php?method=getExperience',
         response => {
-                this.experience.value = response.data.experience;
-                this.experience.lvlEnd = response.data.lvlEnd;
-                this.experience.lvl = response.data.lvl;
+                this.experience.value = response.experience;
+                this.experience.lvlEnd = response.lvlEnd;
+                this.experience.lvl = response.lvl;
                 this.experience.field.width =
                     this.width /
-                    (response.data.lvlEnd - response.data.lvlStart) *
-                    (response.data.experience - response.data.lvlStart);
+                    (response.lvlEnd - response.lvlStart) *
+                    (response.experience - response.lvlStart);
         });
     }
 }

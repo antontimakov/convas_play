@@ -15,6 +15,9 @@ class Achievements{
                 b.user_id = 1
         ";
         $laRes = DbProxy::requestByQuery($query);
+        if (!$laRes[0]['co']){
+            $laRes[0]['co'] = 0;
+        }
         self::$gnCountItemsBafore = $laRes[0]['co'];
     }
     static function countItems(){
@@ -33,8 +36,9 @@ class Achievements{
         if (self::$gnCountItemsBafore == 0 && $lnCountItemsAfter > 0){
             self::addAchievement(1);
         }
-        /*if (self::$gnCountItemsBafore == 99 && $lnCountItemsAfter > 99){
-        }*/
+        if (self::$gnCountItemsBafore == 99 && $lnCountItemsAfter > 99){
+            self::addAchievement(2);
+        }
     }
     static function addAchievement($lnId){
         $query = "
@@ -43,6 +47,11 @@ class Achievements{
             WHERE achievements_id = {$lnId};
         ";
         $laRes = DbProxy::requestByQuery($query);
+        if (!$laRes){
+            $laRes = array();
+            $laRes[0] = array();
+            $laRes[0]['achievement_exists'] = 0;
+        }
         if ($laRes[0]['achievement_exists'] != 1){
             $query = "
                 INSERT INTO public.tuser_achievements(
@@ -50,7 +59,13 @@ class Achievements{
                 VALUES ({$lnId}, 1);
             ";
             DbProxy::requestByQuery($query);
-            array_push(self::$gaNewAchievements, 1);
+            $query = "
+                SELECT name
+                FROM public.tachievements
+                WHERE id = {$lnId};
+            ";
+            $laRes = DbProxy::requestByQuery($query);
+            array_push(self::$gaNewAchievements, $laRes[0]['name']);
         }
     }
 }
