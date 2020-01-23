@@ -1,6 +1,7 @@
 <?php
     require_once ("classes/DbProxy.php");
     require_once ("classes/Achievements.php");
+    require_once ("classes/Statistics.php");
 
     require_once ("BagItems.php");
     require_once ("Fish.php");

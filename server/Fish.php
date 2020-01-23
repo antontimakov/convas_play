@@ -14,6 +14,7 @@ function getFish(){
     ";
     $laRes = DbProxy::requestByQuery($query);
     $item = idByRand($laRes);
+    Statistics::setCast();
     Achievements::som($item);
     Achievements::setCountItems();
     // Вставляем запись в рюкзак, если там нет такого предмета
