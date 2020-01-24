@@ -15,8 +15,6 @@ function getFish(){
     $laRes = DbProxy::requestByQuery($query);
     $item = idByRand($laRes);
     Statistics::setCast();
-    Achievements::som($item);
-    Achievements::setCountItems();
     // Вставляем запись в рюкзак, если там нет такого предмета
     $query = "
         INSERT INTO public.tbag (
@@ -43,7 +41,6 @@ function getFish(){
             item_id = {$item}
     ;";
     DbProxy::requestByQuery($query);
-    Achievements::countItems();
     Achievements::setExperience();
     // Добавляем опыт пользователю
     $query = "
