@@ -18,6 +18,7 @@ class Game {
     static allClicks(poE){
         goFloat.click(poE);
         goCast.click(poE);
+        goFishMarket.click(poE);
     }
     static chCursor(loConvas){
         return (poE)=>{

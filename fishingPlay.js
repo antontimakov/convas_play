@@ -1,6 +1,6 @@
 "use strict";
 
-let goGame, goLake, goCast, goBag, goFloat, goCatch, goMsg, goAchievements;
+let goGame, goLake, goCast, goBag, goFloat, goCatch, goMsg, goAchievements, goFishMarket;
 
 function init() {
     // конфигурация игры
@@ -19,6 +19,8 @@ function init() {
     goCatch = new Catch();
     // конфигурация сообщений
     goMsg = new Msg();
+    // конфигурация рыбного рынка
+    goFishMarket = new FishMarket();
 
     setInterval(play, goGame.timeout);
 }
@@ -31,6 +33,7 @@ function play(){
     goCatch.draw();
     goMsg.draw();
     goAchievements.draw();
+    goFishMarket.draw();
 }
 
 // Нормальное распеределение от 0 до 1 с МО 0.5
