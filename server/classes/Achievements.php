@@ -65,4 +65,36 @@ class Achievements{
             self::addAchievement(7);
         }
     }
+    // Считаем кол-во не мусорных предметов в интентаре после вылова
+    static function countItems($poIncrAll, $poInrGarbage){
+        // выловлено не мусорных до заброса
+        $lnNotGarbageBef = $poIncrAll->before - $poInrGarbage->before;
+        // выловлено не мусорных после заброса
+        $lnNotGarbageAfter = $poIncrAll->after - $poInrGarbage->after;
+
+        if (($lnNotGarbageBef) == 0 &&
+            ($lnNotGarbageAfter) > 0){
+            self::addAchievement(1);
+        }
+        if (($lnNotGarbageBef) < 100 &&
+            ($lnNotGarbageAfter) >= 100){
+            self::addAchievement(2);
+        }
+        if (($lnNotGarbageBef) < 500 &&
+            ($lnNotGarbageAfter) >= 500){
+            self::addAchievement(3);
+        }
+        if (($lnNotGarbageBef) < 1000 &&
+            ($lnNotGarbageAfter) >= 1000){
+            self::addAchievement(4);
+        }
+    }
+    static function som($poIncrSom){
+        if ($poIncrSom->after == 1) {
+            self::addAchievement(8);
+        }
+        if ($poIncrSom->after == 5) {
+            self::addAchievement(9);
+        }
+    }
 }

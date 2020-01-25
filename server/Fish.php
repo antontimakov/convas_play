@@ -5,7 +5,8 @@ function getFish(){
          SELECT DISTINCT ON (it.prior)
             i.id,
             it.probability,
-            it.prior
+            it.prior,
+            it.id AS type_id
         FROM public.titem AS i
         INNER JOIN public.titem_type AS it ON (i.item_type_id = it.id)
         ORDER BY
@@ -13,8 +14,9 @@ function getFish(){
             RANDOM()
     ";
     $laRes = DbProxy::requestByQuery($query);
-    $item = idByRand($laRes);
-    Statistics::setCast();
+    $loRandRes = idByRand($laRes);
+    $item = $loRandRes->id;
+    Statistics::setCast($loRandRes);
     // Вставляем запись в рюкзак, если там нет такого предмета
     $query = "
         INSERT INTO public.tbag (
@@ -69,7 +71,10 @@ function idByRand($paRes){
     foreach ($paRes as $paRe) {
         $lnSumProb += $paRe['probability'];
         if ($lnSumProb > $lnRand){
-            return $paRe['id'];
+            $loRet = new stdClass();
+            $loRet->id = $paRe['id'];
+            $loRet->type_id = $paRe['type_id'];
+            return $loRet;
         }
     }
     return false;
