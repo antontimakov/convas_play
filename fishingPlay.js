@@ -17,7 +17,7 @@ function init() {
     goFloat = new Float();
     // конфигурация улова
     goCatch = new Catch();
-    // конфигурация улова
+    // конфигурация сообщений
     goMsg = new Msg();
 
     setInterval(play, goGame.timeout);
