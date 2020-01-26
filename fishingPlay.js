@@ -1,7 +1,7 @@
 "use strict";
 
 let goGame, goLake, goCast, goBag, goFloat, goCatch, goMsg, goAchievements,
-    goFishMarket, goShop;
+    goFishMarket, goShop, goShopWindow;
 
 function init() {
     // конфигурация игры
@@ -24,21 +24,28 @@ function init() {
     goFishMarket = new FishMarket();
     // конфигурация магазина
     goShop = new Shop();
+    // конфигурация магазина
+    goShopWindow = new ShopWindow();
 
     setInterval(play, goGame.timeout);
     setInterval(bombing, goGame.timeoutBombing);
 }
 
 function play(){
-    goLake.draw();
-    goCast.draw();
-    goFloat.draw();
-    goBag.draw();
-    goCatch.draw();
-    goMsg.draw();
-    goAchievements.draw();
-    goFishMarket.draw();
-    goShop.draw();
+    if (goGame.showMainWindow){
+        goLake.draw();
+        goCast.draw();
+        goFloat.draw();
+        goBag.draw();
+        goCatch.draw();
+        goMsg.draw();
+        goAchievements.draw();
+        goFishMarket.draw();
+        goShop.draw();
+    }
+    if (goShopWindow.show){
+        goShopWindow.draw();
+    }
 }
 
 // Нормальное распеределение от 0 до 1 с МО 0.5
