@@ -47,18 +47,25 @@ class Bag {
         }
     }
     init(){
+        this.getBagItems();
+        this.getExperience();
+    }
+    getBagItems(){
         let loMe = this;
+        loMe.imgs = [];
         TProxy.getFromServer('/server/index.php?method=getBagItems',
-        response => {
-            response.forEach((element) => {
-                loMe.imgs[element.id] = {};
-                loMe.imgs[element.id].img = new Image();
-                loMe.imgs[element.id].img.src = element.src;
-                loMe.imgs[element.id].count = element.bcount;
+            response => {
+                response.forEach((element) => {
+                    loMe.imgs[element.id] = {};
+                    loMe.imgs[element.id].img = new Image();
+                    loMe.imgs[element.id].img.src = element.src;
+                    loMe.imgs[element.id].count = element.bcount;
+                });
             });
-        });
+    }
+    getExperience(){
         TProxy.getFromServer('/server/index.php?method=getExperience',
-        response => {
+            response => {
                 this.experience.value = response.experience;
                 this.experience.lvlEnd = response.lvlEnd;
                 this.experience.lvl = response.lvl;
@@ -66,7 +73,7 @@ class Bag {
                     this.width /
                     (response.lvlEnd - response.lvlStart) *
                     (response.experience - response.lvlStart);
-        });
+            });
     }
     drawExperienceText(){
         // настройки текста

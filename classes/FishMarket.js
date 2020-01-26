@@ -16,7 +16,10 @@ class FishMarket extends ImgContainer {
             poE.pageY <= (this.y + this.height)
         ){
             TProxy.getFromServer('/server/index.php?method=sellFish',
-                response => {});
+                response => {
+                    goBag.getBagItems();
+                }
+            );
         }
     }
 }
