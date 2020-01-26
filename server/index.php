@@ -7,6 +7,7 @@
     require_once ("Fish.php");
     require_once ("Experience.php");
     require_once ("Market.php");
+    require_once ("Events.php");
 
     $method = $_SERVER['REQUEST_METHOD'];
     DbProxy::tconnect();

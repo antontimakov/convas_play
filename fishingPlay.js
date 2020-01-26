@@ -23,6 +23,7 @@ function init() {
     goFishMarket = new FishMarket();
 
     setInterval(play, goGame.timeout);
+    setInterval(bombing, goGame.timeoutBombing);
 }
 
 function play(){
@@ -45,4 +46,10 @@ function randn_bm() {
     num = num / 10.0 + 0.5;
     if (num > 1 || num < 0) return randn_bm();
     return num;
+}
+
+function bombing() {
+    TProxy.getFromServer('/server/index.php?method=getEvents',
+    response => {
+    });
 }

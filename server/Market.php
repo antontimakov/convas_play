@@ -11,10 +11,12 @@ function sellFish(){
             b.item_id,
             1,
             b.bcount,
-            NOW() + INTERVAL '1 SECOND' * b.bcount * i.price
+            NOW() + INTERVAL '1 SECOND' * SUM(b.bcount * i.price) OVER()
         FROM public.tbag AS b
         INNER JOIN public.titem AS i ON (b.item_id = i.id)
-        WHERE b.user_id = 1;
+        WHERE
+            b.user_id = 1 AND
+            i.item_type_id != 4;
 
         DELETE FROM public.tbag
         WHERE user_id = 1;

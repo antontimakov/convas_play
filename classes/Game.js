@@ -4,6 +4,7 @@ class Game {
         this.width = 745;
         this.height = 500;
         this.timeout = 1000 / 50;
+        this.timeoutBombing = 5000;
         this.context = this.create();
     }
     create(){
