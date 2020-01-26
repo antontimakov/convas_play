@@ -51,5 +51,6 @@ function randn_bm() {
 function bombing() {
     TProxy.getFromServer('/server/index.php?method=getEvents',
     response => {
+        goFishMarket.initGold();
     });
 }

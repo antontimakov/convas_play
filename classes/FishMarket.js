@@ -7,6 +7,8 @@ class FishMarket extends ImgContainer {
         this.width = 40;
         this.height = 40;
         this.img.src = 'img/fishMarket.png';
+        this.gold = 0;
+        this.initGold();
     }
     click(poE){
         if (
@@ -21,5 +23,24 @@ class FishMarket extends ImgContainer {
                 }
             );
         }
+    }
+    initGold(){
+        TProxy.getFromServer('/server/index.php?method=getGold',
+            response => {
+                this.gold = response[0].gold;
+            }
+        );
+    }
+    drawGold(){
+        // настройки текста
+        goGame.context.font = 'bold 25px courier';
+        goGame.context.textAlign = 'center';
+        goGame.context.textBaseline = 'top';
+        goGame.context.fillStyle = 'white';
+        goGame.context.fillText(this.gold,  this.x, this.y);
+    }
+    draw(){
+        super.draw();
+        this.drawGold();
     }
 }
