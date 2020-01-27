@@ -19,7 +19,7 @@ class Shop extends ImgContainer {
             goShopWindow.show = true;
 
             let canvas = document.getElementById("fishingPlay");
-            canvas.onclick = null;
+            canvas.onclick = (poE)=>{goShopWindow.click(poE)};
             canvas.onmousemove = null;
             // TODO курсор при наведении на кнопки
         }
