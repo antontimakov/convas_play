@@ -17,7 +17,8 @@ class ShopWindow{
             x: 50,
             y: 20,
             width: 100,
-            height: 150
+            height: 150,
+            text: 'Черви'
         };
     }
     draw(){
@@ -57,7 +58,7 @@ class ShopWindow{
         goGame.context.textBaseline = 'top';
         goGame.context.fillStyle = 'black';
         goGame.context.fillText(
-            `Черви`,
+            this.item.text,
             this.item.x,
             this.item.y + this.item.height
         );
