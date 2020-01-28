@@ -8,14 +8,7 @@ class Cast extends ImgContainer {
         this.height = 458;
         this.img.src = 'img/cast.png';
     }
-    click(poE){
-        if (
-            poE.pageX > this.x &&
-            poE.pageX <= (this.x + this.width) &&
-            poE.pageY > this.y &&
-            poE.pageY <= (this.y + this.height)
-        ){
-            goFloat.doShow();
-        }
+    clickBody(poE){
+        goFloat.doShow();
     }
 }

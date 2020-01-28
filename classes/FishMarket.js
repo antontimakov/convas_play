@@ -10,19 +10,12 @@ class FishMarket extends ImgContainer {
         this.gold = 0;
         this.initGold();
     }
-    click(poE){
-        if (
-            poE.pageX > this.x &&
-            poE.pageX <= (this.x + this.width) &&
-            poE.pageY > this.y &&
-            poE.pageY <= (this.y + this.height)
-        ){
-            TProxy.getFromServer('/server/index.php?method=sellFish',
-                response => {
-                    goBag.getBagItems();
-                }
-            );
-        }
+    clickBody(poE){
+        TProxy.getFromServer('/server/index.php?method=sellFish',
+            response => {
+                goBag.getBagItems();
+            }
+        );
     }
     initGold(){
         TProxy.getFromServer('/server/index.php?method=getGold',

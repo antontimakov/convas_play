@@ -1,6 +1,7 @@
 // класс определяющий параметры кнопки заброса
-class ShopWindow{
+class ShopWindow extends Container {
     constructor() {
+        super();
         this.x = 0;
         this.y = 0;
         this.width = goGame.width;
@@ -64,19 +65,12 @@ class ShopWindow{
         );
 
     }
-    click(poE){
-        if (
-            poE.pageX > this.back.x &&
-            poE.pageX <= (this.back.x + this.back.width) &&
-            poE.pageY > this.back.y &&
-            poE.pageY <= (this.back.y + this.back.height)
-        ){
-            goGame.showMainWindow = true;
-            goShopWindow.show = false;
+    clickBody(poE){
+        goGame.showMainWindow = true;
+        goShopWindow.show = false;
 
-            let canvas = document.getElementById("fishingPlay");
-            canvas.onclick = Game.allClicks;
-            canvas.onmousemove = Game.chCursor(canvas);
-        }
+        let canvas = document.getElementById("fishingPlay");
+        canvas.onclick = Game.allClicks;
+        canvas.onmousemove = Game.chCursor(canvas);
     }
 }

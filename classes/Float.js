@@ -24,31 +24,23 @@ class Float extends ImgContainer {
             startY: 66
         };
     }
-    click(poE){
-        if (
-            this.show &&
-            poE.pageX > this.x &&
-            poE.pageX <= (this.x + this.width) &&
-            poE.pageY > this.y &&
-            poE.pageY <= (this.y + this.height)
-        ){
-            if (this.biting) {
-                this.show = false;
-                TProxy.getFromServer('/server/index.php?method=getFish',
-                response => {
-                    response.forEach((element) => {
-                        goBag.init();
-                        goCatch.img.src = element.src_full;
-                        goCatch.text.text = element.name;
-                        goCatch.show = true;
-                    });
-                });
-            }
-            else{
-                goMsg.add('Ещё не клюнуло!');
-            }
+    clickBody(poE){
+        if (this.biting) {
             this.show = false;
+            TProxy.getFromServer('/server/index.php?method=getFish',
+            response => {
+                response.forEach((element) => {
+                    goBag.init();
+                    goCatch.img.src = element.src_full;
+                    goCatch.text.text = element.name;
+                    goCatch.show = true;
+                });
+            });
         }
+        else{
+            goMsg.add('Ещё не клюнуло!');
+        }
+        this.show = false;
     }
     draw(){
         if (this.show) {
