@@ -6,6 +6,7 @@ function init() {
     // конфигурация игры
     goGame = new Game();
     goMainScene = new MainScene();
+    goMainScene.show();
     // конфигурация достижений
     goAchievements = new Achievements();
     // конфигурация сообщений
@@ -18,7 +19,7 @@ function init() {
 }
 
 function play(){
-    if (goMainScene.show){
+    if (goMainScene.showed){
         goMainScene.draw();
         goMsg.draw();
         goAchievements.draw();

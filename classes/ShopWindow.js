@@ -66,11 +66,10 @@ class ShopWindow extends Container {
 
     }
     clickBody(poE){
-        goMainScene.show = true;
+        goMainScene.showed = true;
         goShopWindow.show = false;
 
-        let canvas = document.getElementById("fishingPlay");
-        canvas.onclick = Game.allClicks;
-        canvas.onmousemove = Game.chCursor(canvas);
+        goGame.canvas.onclick = Game.allClicks;
+        goGame.canvas.onmousemove = Game.chCursor(canvas);
     }
 }

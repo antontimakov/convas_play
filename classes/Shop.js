@@ -9,12 +9,11 @@ class Shop extends ImgContainer {
         this.img.src = 'img/shop.png';
     }
     clickBody(poE){
-        goMainScene.show = false;
+        goMainScene.showed = false;
         goShopWindow.show = true;
 
-        let canvas = document.getElementById("fishingPlay");
-        canvas.onclick = (poE)=>{goShopWindow.click(poE)};
-        canvas.onmousemove = null;
+        goGame.canvas.onclick = (poE)=>{goShopWindow.click(poE)};
+        goGame.canvas.onmousemove = null;
         // TODO курсор при наведении на кнопки
     }
 }

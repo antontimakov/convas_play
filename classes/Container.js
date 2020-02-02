@@ -9,9 +9,22 @@ class Container {
         }
     }
     overMy(poE){
-        return poE.pageX > this.x &&
+        return (
+            poE.pageX > this.x &&
             poE.pageX <= (this.x + this.width) &&
             poE.pageY > this.y &&
-            poE.pageY <= (this.y + this.height);
+            poE.pageY <= (this.y + this.height)
+        );
+    }
+    over(poE){
+        if (this.overMy(poE)){
+            goGame.canvas.style.cursor = '';
+            if (this.clickBody){
+                goGame.canvas.style.cursor = 'pointer';
+            }
+            if (this.overBody){
+                this.overBody(poE);
+            }
+        }
     }
 }
