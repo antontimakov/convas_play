@@ -18,24 +18,32 @@ class Game {
     }
     // вызывает все клики
     static allClicks(poE){
-        goFloat.click(poE);
-        goCast.click(poE);
+        goMainScene.gaObjs.float.click(poE);
+        goMainScene.gaObjs.cast.click(poE);
         goFishMarket.click(poE);
-        goShop.click(poE);
+        goMainScene.gaObjs.shop.click(poE);
+    }
+    static allOver(poConvas){
+        return(poE)=>{
+            goMainScene.gaObjs.float.over(poE, poConvas);
+            goMainScene.gaObjs.cast.over(poE, poConvas);
+            goFishMarket.over(poE, poConvas);
+            goMainScene.gaObjs.shop.over(poE, poConvas);
+        }
     }
     static chCursor(loConvas){
         return (poE)=>{
             if (
                 (
-                    poE.pageX > goCast.x &&
-                    poE.pageY < goCast.height
+                    poE.pageX > goMainScene.gaObjs.cast.x &&
+                    poE.pageY < goMainScene.gaObjs.cast.height
                 ) ||
                 (
-                    goFloat.show &&
-                    poE.pageX > goFloat.x &&
-                    poE.pageX < (goFloat.x + goFloat.width) &&
-                    poE.pageY > goFloat.y &&
-                    poE.pageY < (goFloat.y + goFloat.height)
+                    goMainScene.gaObjs.float.show &&
+                    poE.pageX > goMainScene.gaObjs.float.x &&
+                    poE.pageX < (goMainScene.gaObjs.float.x + goMainScene.gaObjs.float.width) &&
+                    poE.pageY > goMainScene.gaObjs.float.y &&
+                    poE.pageY < (goMainScene.gaObjs.float.y + goMainScene.gaObjs.float.height)
                 )
             ) {
                 loConvas.style.cursor = 'pointer';

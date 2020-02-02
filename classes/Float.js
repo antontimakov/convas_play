@@ -30,10 +30,10 @@ class Float extends ImgContainer {
             TProxy.getFromServer('/server/index.php?method=getFish',
             response => {
                 response.forEach((element) => {
-                    goBag.init();
-                    goCatch.img.src = element.src_full;
-                    goCatch.text.text = element.name;
-                    goCatch.show = true;
+                    goMainScene.gaObjs.bag.init();
+                    goMainScene.gaObjs.catch.img.src = element.src_full;
+                    goMainScene.gaObjs.catch.text.text = element.name;
+                    goMainScene.gaObjs.catch.show = true;
                 });
             });
         }
@@ -77,8 +77,8 @@ class Float extends ImgContainer {
         this.startWaitingBiting();
     }
     setCoordinates() {
-        this.x = Math.round(Math.random() * (goLake.width - this.width));
-        this.y = Math.round(Math.random() * (goLake.height - this.height));
+        this.x = Math.round(Math.random() * (goMainScene.gaObjs.lake.width - this.width));
+        this.y = Math.round(Math.random() * (goMainScene.gaObjs.lake.height - this.height));
     }
     startWaitingBiting(){
         this.animate.curRadius = 0;

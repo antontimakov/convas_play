@@ -1,29 +1,17 @@
 "use strict";
 
-let goGame, goLake, goCast, goBag, goFloat, goCatch, goMsg, goAchievements,
-    goFishMarket, goShop, goShopWindow;
+let goGame, goMainScene, goMsg, goAchievements, goFishMarket, goShopWindow;
 
 function init() {
     // конфигурация игры
     goGame = new Game();
+    goMainScene = new MainScene();
     // конфигурация достижений
     goAchievements = new Achievements();
-    // конфигурация области забрасывания
-    goLake = new Lake();
-    // конфигурация кнопки заброса
-    goCast = new Cast();
-    // конфигурация сумки
-    goBag = new Bag();
-    // конфигурация поплавка
-    goFloat = new Float();
-    // конфигурация улова
-    goCatch = new Catch();
     // конфигурация сообщений
     goMsg = new Msg();
     // конфигурация рыбного рынка
     goFishMarket = new FishMarket();
-    // конфигурация магазина
-    goShop = new Shop();
     // конфигурация магазина
     goShopWindow = new ShopWindow();
 
@@ -33,15 +21,15 @@ function init() {
 
 function play(){
     if (goGame.showMainWindow){
-        goLake.draw();
-        goCast.draw();
-        goFloat.draw();
-        goBag.draw();
-        goCatch.draw();
+        goMainScene.gaObjs.lake.draw();
+        goMainScene.gaObjs.cast.draw();
+        goMainScene.gaObjs.float.draw();
+        goMainScene.gaObjs.bag.draw();
+        goMainScene.gaObjs.catch.draw();
         goMsg.draw();
         goAchievements.draw();
         goFishMarket.draw();
-        goShop.draw();
+        goMainScene.gaObjs.shop.draw();
     }
     if (goShopWindow.show){
         goShopWindow.draw();

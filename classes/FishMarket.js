@@ -13,7 +13,7 @@ class FishMarket extends ImgContainer {
     clickBody(poE){
         TProxy.getFromServer('/server/index.php?method=sellFish',
             response => {
-                goBag.getBagItems();
+                goMainScene.gaObjs.bag.getBagItems();
             }
         );
     }
