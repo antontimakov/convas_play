@@ -1,6 +1,7 @@
 // класс определяющий параметры основнойсцены
 class MainScene {
     constructor() {
+        this.show = true;
         this.gaObjs = {
             lake: new Lake(),
             cast: new Cast(),
@@ -13,7 +14,9 @@ class MainScene {
     }
     draw(){
         for (let item in this.gaObjs){
-            this.gaObjs[item].draw();
+            if (this.gaObjs[item].draw){
+                this.gaObjs[item].draw();
+            }
         }
     }
 }

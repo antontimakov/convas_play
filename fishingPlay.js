@@ -18,7 +18,7 @@ function init() {
 }
 
 function play(){
-    if (goGame.showMainWindow){
+    if (goMainScene.show){
         goMainScene.draw();
         goMsg.draw();
         goAchievements.draw();

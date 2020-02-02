@@ -66,7 +66,7 @@ class ShopWindow extends Container {
 
     }
     clickBody(poE){
-        goGame.showMainWindow = true;
+        goMainScene.show = true;
         goShopWindow.show = false;
 
         let canvas = document.getElementById("fishingPlay");

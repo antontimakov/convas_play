@@ -9,7 +9,7 @@ class Shop extends ImgContainer {
         this.img.src = 'img/shop.png';
     }
     clickBody(poE){
-        goGame.showMainWindow = false;
+        goMainScene.show = false;
         goShopWindow.show = true;
 
         let canvas = document.getElementById("fishingPlay");

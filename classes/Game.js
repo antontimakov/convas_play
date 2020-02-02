@@ -6,7 +6,6 @@ class Game {
         this.timeout = 1000 / 50;
         this.timeoutBombing = 5000;
         this.context = this.create();
-        this.showMainWindow = true;
     }
     create(){
         let canvas = document.getElementById("fishingPlay");
