@@ -1,6 +1,6 @@
 "use strict";
 
-let goGame, goMainScene, goMsg, goAchievements, goFishMarket, goShopWindow;
+let goGame, goMainScene, goMsg, goAchievements, goShopWindow;
 
 function init() {
     // конфигурация игры
@@ -10,8 +10,6 @@ function init() {
     goAchievements = new Achievements();
     // конфигурация сообщений
     goMsg = new Msg();
-    // конфигурация рыбного рынка
-    goFishMarket = new FishMarket();
     // конфигурация магазина
     goShopWindow = new ShopWindow();
 
@@ -28,7 +26,7 @@ function play(){
         goMainScene.gaObjs.catch.draw();
         goMsg.draw();
         goAchievements.draw();
-        goFishMarket.draw();
+        goMainScene.gaObjs.fishMarket.draw();
         goMainScene.gaObjs.shop.draw();
     }
     if (goShopWindow.show){
@@ -50,6 +48,6 @@ function randn_bm() {
 function bombing() {
     TProxy.getFromServer('/server/index.php?method=getEvents',
     response => {
-        goFishMarket.initGold();
+        goMainScene.gaObjs.fishMarket.initGold();
     });
 }

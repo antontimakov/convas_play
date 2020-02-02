@@ -14,5 +14,7 @@ class MainScene {
         this.gaObjs.catch = new Catch();
         // конфигурация магазина
         this.gaObjs.shop = new Shop();
+        // конфигурация рыбного рынка
+        this.gaObjs.fishMarket = new FishMarket();
     }
 }

@@ -20,14 +20,14 @@ class Game {
     static allClicks(poE){
         goMainScene.gaObjs.float.click(poE);
         goMainScene.gaObjs.cast.click(poE);
-        goFishMarket.click(poE);
+        goMainScene.gaObjs.fishMarket.click(poE);
         goMainScene.gaObjs.shop.click(poE);
     }
     static allOver(poConvas){
         return(poE)=>{
             goMainScene.gaObjs.float.over(poE, poConvas);
             goMainScene.gaObjs.cast.over(poE, poConvas);
-            goFishMarket.over(poE, poConvas);
+            goMainScene.gaObjs.fishMarket.over(poE, poConvas);
             goMainScene.gaObjs.shop.over(poE, poConvas);
         }
     }
