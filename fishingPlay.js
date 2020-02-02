@@ -19,15 +19,9 @@ function init() {
 
 function play(){
     if (goGame.showMainWindow){
-        goMainScene.gaObjs.lake.draw();
-        goMainScene.gaObjs.cast.draw();
-        goMainScene.gaObjs.float.draw();
-        goMainScene.gaObjs.bag.draw();
-        goMainScene.gaObjs.catch.draw();
+        goMainScene.draw();
         goMsg.draw();
         goAchievements.draw();
-        goMainScene.gaObjs.fishMarket.draw();
-        goMainScene.gaObjs.shop.draw();
     }
     if (goShopWindow.show){
         goShopWindow.draw();
