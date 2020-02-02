@@ -66,10 +66,7 @@ class ShopWindow extends Container {
 
     }
     clickBody(poE){
-        goMainScene.showed = true;
+        goMainScene.show();
         goShopWindow.show = false;
-
-        goGame.canvas.onclick = Game.allClicks;
-        goGame.canvas.onmousemove = Game.chCursor(canvas);
     }
 }
