@@ -1,6 +1,7 @@
 // класс определяющий параметры сумки
-class Bag {
+class Bag extends Container {
     constructor() {
+        super();
         this.x = 0;
         this.y = 458;
         this.width = 745;

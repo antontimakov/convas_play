@@ -28,7 +28,7 @@ class MainScene {
     }
     over(poE){
         for (let item in this.gaObjs){
-            if (this.gaObjs[item].click){
+            if (this.gaObjs[item].over){
                 this.gaObjs[item].over(poE);
             }
         }
