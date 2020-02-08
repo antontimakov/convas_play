@@ -14,6 +14,5 @@ class Shop extends ImgContainer {
 
         goGame.canvas.onclick = (poE)=>{goShopWindow.click(poE)};
         goGame.canvas.onmousemove = null;
-        // TODO курсор при наведении на кнопки
     }
 }
