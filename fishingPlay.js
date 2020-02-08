@@ -40,7 +40,7 @@ function randn_bm() {
 
 function bombing() {
     TProxy.getFromServer('/server/index.php?method=getEvents',
-    response => {
+    () => {
         goMainScene.gaObjs.fishMarket.initGold();
     });
 }
