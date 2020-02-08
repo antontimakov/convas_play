@@ -19,14 +19,12 @@ function init() {
 }
 
 function play(){
-    if (goMainScene.showed){
-        goMainScene.draw();
-        goMsg.draw();
-        goAchievements.draw();
-    }
+    goMainScene.draw();
     if (goShopWindow.show){
         goShopWindow.draw();
     }
+    goMsg.draw();
+    goAchievements.draw();
 }
 
 // Нормальное распеределение от 0 до 1 с МО 0.5

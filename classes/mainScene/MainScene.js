@@ -14,9 +14,11 @@ class MainScene {
         };
     }
     draw(){
-        for (let item in this.gaObjs){
-            if (this.gaObjs[item].draw){
-                this.gaObjs[item].draw();
+        if(this.showed){
+            for (let item in this.gaObjs){
+                if (this.gaObjs[item].draw){
+                    this.gaObjs[item].draw();
+                }
             }
         }
     }
