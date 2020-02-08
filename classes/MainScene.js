@@ -6,6 +6,7 @@ class MainScene {
             lake: new Lake(),
             cast: new Cast(),
             bag: new Bag(),
+            experience: new Experience(),
             float: new Float(),
             catch: new Catch(),
             shop: new Shop(),

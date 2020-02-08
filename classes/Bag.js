@@ -13,18 +13,7 @@ class Bag extends Container {
             fakePaddingRightText: 20,
             fakePaddingTopText: 20
         };
-        this.experience = {
-            value: null,
-            lvlEnd: null,
-            lvl: null,
-            color: 'red',
-            colorStart: 'white',
-            x: 0,
-            y: 498,
-            width: 0,
-            height: 2
-        };
-        this.init();
+        this.getBagItems();
     }
     draw(){
         goGame.context.fillStyle = this.color;
@@ -42,14 +31,6 @@ class Bag extends Container {
                 this.x + this.width - this.cell.fakePaddingRightText - this.cell.width * (lnNum - 1),
                 this.y + this.cell.fakePaddingTopText);
         });
-        if (this.experience.value){
-            this.drawExperienceText();
-            this.drawExperienceLine();
-        }
-    }
-    init(){
-        this.getBagItems();
-        this.getExperience();
     }
     getBagItems(){
         let loMe = this;
@@ -63,45 +44,5 @@ class Bag extends Container {
                     loMe.imgs[element.id].count = element.bcount;
                 });
             });
-    }
-    getExperience(){
-        TProxy.getFromServer('/server/index.php?method=getExperience',
-            response => {
-                this.experience.value = response.experience;
-                this.experience.lvlEnd = response.lvlEnd;
-                this.experience.lvl = response.lvl;
-                this.experience.width =
-                    this.width /
-                    (response.lvlEnd - response.lvlStart) *
-                    (response.experience - response.lvlStart);
-            });
-    }
-    drawExperienceText(){
-        // настройки текста
-        goGame.context.font = 'bold 20px courier';
-        goGame.context.textAlign = 'center';
-        goGame.context.textBaseline = 'top';
-        goGame.context.fillStyle = 'white';
-        goGame.context.fillText(
-            `Ур ${this.experience.lvl} (${this.experience.value}/${this.experience.lvlEnd})`,
-            100,
-            this.y + 20
-        );
-    }
-    drawExperienceLine(){
-        goGame.context.fillStyle = this.experience.colorStart;
-        goGame.context.fillRect(
-            this.experience.x,
-            this.experience.y,
-            this.width,
-            this.experience.height
-        ); // Закрашиваем всю полосу опыта цветом по умолчанию
-        goGame.context.fillStyle = this.experience.color;
-        goGame.context.fillRect(
-            this.experience.x,
-            this.experience.y,
-            this.experience.width,
-            this.experience.height
-        );
     }
 }

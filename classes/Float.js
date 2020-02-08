@@ -30,7 +30,8 @@ class Float extends ImgContainer {
             TProxy.getFromServer('/server/index.php?method=getFish',
             response => {
                 response.forEach((element) => {
-                    goMainScene.gaObjs.bag.init();
+                    goMainScene.gaObjs.bag.getBagItems();
+                    goMainScene.gaObjs.experience.getExperience();
                     goMainScene.gaObjs.catch.img.src = element.src_full;
                     goMainScene.gaObjs.catch.text.text = element.name;
                     goMainScene.gaObjs.catch.show = true;
