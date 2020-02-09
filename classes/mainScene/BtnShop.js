@@ -1,5 +1,5 @@
 // класс определяющий параметры кнопки заброса
-class Shop extends ImgContainer {
+class BtnShop extends ImgContainer {
     constructor() {
         super();
         this.x = 340;

@@ -10,8 +10,8 @@ class MainScene extends Scene{
             experience: new Experience(),
             float: new Float(),
             catch: new Catch(),
-            shop: new Shop(),
-            fishMarket: new FishMarket()
+            btnShop: new BtnShop(),
+            btnFishMarket: new BtnFishMarket()
         };
     }
 }

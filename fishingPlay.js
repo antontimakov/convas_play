@@ -12,7 +12,7 @@ function init() {
     // конфигурация сообщений
     goMsg = new Msg();
     // конфигурация магазина
-    goShopWindow = new ShopWindow();
+    goShopWindow = new Shop();
 
     setInterval(play, goGame.timeout);
     setInterval(bombing, goGame.timeoutBombing);
@@ -41,6 +41,6 @@ function randn_bm() {
 function bombing() {
     TProxy.getFromServer('/server/index.php?method=getEvents',
     () => {
-        goMainScene.gaObjs.fishMarket.initGold();
+        goMainScene.gaObjs.btnFishMarket.initGold();
     });
 }

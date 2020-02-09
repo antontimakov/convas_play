@@ -1,5 +1,5 @@
 // класс определяющий параметры кнопки заброса
-class ShopWindow extends Container {
+class Shop extends Container {
     constructor() {
         super();
         this.x = 0;

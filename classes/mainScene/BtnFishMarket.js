@@ -1,5 +1,5 @@
 // класс определяющий параметры кнопки заброса
-class FishMarket extends ImgContainer {
+class BtnFishMarket extends ImgContainer {
     constructor() {
         super();
         this.x = 300;
