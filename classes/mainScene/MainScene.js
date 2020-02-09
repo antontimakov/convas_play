@@ -2,7 +2,6 @@
 class MainScene extends Scene{
     constructor() {
         super();
-        this.showed = true;
         this.gaObjs = {
             lake: new Lake(),
             cast: new Cast(),

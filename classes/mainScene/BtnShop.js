@@ -9,10 +9,6 @@ class BtnShop extends ImgContainer {
         this.img.src = 'img/shop.png';
     }
     clickBody(poE){
-        goMainScene.showed = false;
-        goShopWindow.show = true;
-
-        goGame.canvas.onclick = (poE)=>{goShopWindow.click(poE)};
-        goGame.canvas.onmousemove = null;
+        goShopScene.show();
     }
 }

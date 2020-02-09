@@ -67,6 +67,5 @@ class Shop extends Container {
     }
     clickBody(poE){
         goMainScene.show();
-        goShopWindow.show = false;
     }
 }

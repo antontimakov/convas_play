@@ -2,6 +2,7 @@
 class Scene{
     constructor() {
         this.showed = false;
+        this.curScene = null;
     }
     draw(){
         if(this.showed){
@@ -28,8 +29,12 @@ class Scene{
     }
     show(){
         let me = this;
+        if (this.curScene){
+            this.curScene.showed = false;
+        }
         this.showed = true;
         goGame.canvas.onclick = (poE)=>{me.click(poE)};
         goGame.canvas.onmousemove = (poE)=>{me.over(poE)};
+        this.curScene = this;
     }
 }

@@ -1,18 +1,17 @@
 "use strict";
 
-let goGame, goMainScene, goMsg, goAchievements, goShopWindow;
+let goGame, goMsg, goAchievements, goMainScene, goShopScene;
 
 function init() {
     // конфигурация игры
     goGame = new Game();
-    goMainScene = new MainScene();
-    goMainScene.show();
     // конфигурация достижений
     goAchievements = new Achievements();
     // конфигурация сообщений
     goMsg = new Msg();
-    // конфигурация магазина
-    goShopWindow = new Shop();
+    goMainScene = new MainScene();
+    goShopScene = new ShopScene();
+    goMainScene.show();
 
     setInterval(play, goGame.timeout);
     setInterval(bombing, goGame.timeoutBombing);
@@ -20,9 +19,7 @@ function init() {
 
 function play(){
     goMainScene.draw();
-    if (goShopWindow.show){
-        goShopWindow.draw();
-    }
+    goShopScene.draw();
     goMsg.draw();
     goAchievements.draw();
 }
