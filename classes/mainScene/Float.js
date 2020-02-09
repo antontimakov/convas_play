@@ -40,7 +40,7 @@ class Float extends ImgContainer {
             });
         }
         else{
-            goMsg.add('Ещё не клюнуло!');
+            goGame.msg.add('Ещё не клюнуло!');
         }
         this.show = false;
     }
@@ -57,7 +57,7 @@ class Float extends ImgContainer {
             this.animate.timeBitingStart &&
             (this.animate.timeBitingStart <= new Date().getTime())
         ){
-            this.animate.timeBitingEnd = new Date().getTime() + randn_bm() * this.animate.moBiting;
+            this.animate.timeBitingEnd = new Date().getTime() + goGame.randn_bm() * this.animate.moBiting;
             this.biting = true;
             this.animate.timeBitingStart = null; // чтобы не попадать сюда при каждой перерисовке
         }
@@ -66,7 +66,7 @@ class Float extends ImgContainer {
                 (this.animate.timeBitingEnd <= new Date().getTime())
             ){
                 this.show = false;
-                goMsg.add('Рыбка сорвалась!');
+                goGame.msg.add('Рыбка сорвалась!');
             }
         }
         if (this.biting){
@@ -84,7 +84,7 @@ class Float extends ImgContainer {
     }
     startWaitingBiting(){
         this.animate.curRadius = 0;
-        this.animate.timeBitingStart = new Date().getTime() + randn_bm() * this.animate.moStartBiting * 2;
+        this.animate.timeBitingStart = new Date().getTime() + goGame.randn_bm() * this.animate.moStartBiting * 2;
         this.animate.timeBitingEnd = null;
         this.biting = false;
     }

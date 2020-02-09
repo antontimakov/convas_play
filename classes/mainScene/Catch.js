@@ -31,7 +31,7 @@ class Catch extends ImgContainer {
     }
     hideAnimate(){
         if (!this.animate.timeHide){
-            this.animate.timeHide = new Date().getTime() + randn_bm() * this.animate.moHide;
+            this.animate.timeHide = new Date().getTime() + goGame.randn_bm() * this.animate.moHide;
         }
         else{
             if (this.animate.timeHide <= new Date().getTime()){
