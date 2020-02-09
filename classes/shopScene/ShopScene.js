@@ -4,7 +4,8 @@ class ShopScene extends Scene{
         super();
         this.gaObjs = {
             shop: new Shop(),
-            btnBack: new BtnBack()
+            btnBack: new BtnBack(),
+            shopItem: new ShopItem()
         };
     }
 }
