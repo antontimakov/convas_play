@@ -1,6 +1,6 @@
 "use strict";
 
-let goGame, goMsg, goAchievements, goMainScene, goShopScene;
+let goGame, goMsg, goAchievements;
 
 function init() {
     // конфигурация игры
@@ -9,17 +9,15 @@ function init() {
     goAchievements = new Achievements();
     // конфигурация сообщений
     goMsg = new Msg();
-    goMainScene = new MainScene();
-    goShopScene = new ShopScene();
-    goMainScene.show();
+    goGame.scenes.main.show();
 
     setInterval(play, goGame.timeout);
     setInterval(bombing, goGame.timeoutBombing);
 }
 
 function play(){
-    goMainScene.draw();
-    goShopScene.draw();
+    goGame.scenes.main.draw();
+    goGame.scenes.shop.draw();
     goMsg.draw();
     goAchievements.draw();
 }
@@ -38,7 +36,7 @@ function randn_bm() {
 function bombing() {
     TProxy.getFromServer('/server/index.php?method=getEvents',
     () => {
-        goMainScene.gaObjs.btnFishMarket.initGold();
+        goGame.scenes.main.gaObjs.btnFishMarket.initGold();
     });
 }
 
@@ -49,6 +47,10 @@ class Game {
         this.height = 500;
         this.timeout = 1000 / 50;
         this.timeoutBombing = 5000;
+        this.scenes = {
+            main: new MainScene(),
+            shop: new ShopScene()
+        };
         this.canvas = document.getElementById("fishingPlay");
         this.context = this.create();
     }

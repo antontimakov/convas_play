@@ -17,6 +17,6 @@ class BtnBack extends Container {
         );
     }
     clickBody(poE){
-        goMainScene.show();
+        goGame.scenes.main.show();
     }
 }

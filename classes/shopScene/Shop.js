@@ -4,8 +4,8 @@ class Shop extends Container {
         super();
         this.x = 0;
         this.y = 0;
-        this.width = goGame.width;
-        this.height = goGame.height;
+        this.width = 745;
+        this.height = 500;
         this.color = '#ffffaa';
         this.show = false;
     }
