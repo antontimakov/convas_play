@@ -9,6 +9,6 @@ class Cast extends ImgContainer {
         this.img.src = 'img/cast.png';
     }
     clickBody(poE){
-        goGame.scenes.main.gaObjs.float.doShow();
+        Game.scenes.main.gaObjs.float.doShow();
     }
 }

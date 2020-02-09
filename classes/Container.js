@@ -18,9 +18,9 @@ class Container {
     }
     over(poE){
         if (this.overMy(poE)){
-            goGame.canvas.style.cursor = '';
+            Game.canvas.style.cursor = '';
             if (this.clickBody){
-                goGame.canvas.style.cursor = 'pointer';
+                Game.canvas.style.cursor = 'pointer';
             }
             if (this.overBody){
                 this.overBody(poE);

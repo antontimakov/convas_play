@@ -16,17 +16,17 @@ class Bag extends Container {
         this.getBagItems();
     }
     draw(){
-        goGame.context.fillStyle = this.color;
-        goGame.context.fillRect(this.x, this.y, this.width, this.height);
+        Game.context.fillStyle = this.color;
+        Game.context.fillRect(this.x, this.y, this.width, this.height);
         let lnNum = 0;
         this.imgs.forEach((element) => {
-            goGame.context.drawImage(element.img, this.x + this.width - this.cell.width * ++lnNum, this.y);
+            Game.context.drawImage(element.img, this.x + this.width - this.cell.width * ++lnNum, this.y);
             // настройки текста
-            goGame.context.font = 'bold 16px courier';
-            goGame.context.textAlign = 'center';
-            goGame.context.textBaseline = 'top';
-            goGame.context.fillStyle = 'white';
-            goGame.context.fillText(
+            Game.context.font = 'bold 16px courier';
+            Game.context.textAlign = 'center';
+            Game.context.textBaseline = 'top';
+            Game.context.fillStyle = 'white';
+            Game.context.fillText(
                 element.count,
                 this.x + this.width - this.cell.fakePaddingRightText - this.cell.width * (lnNum - 1),
                 this.y + this.cell.fakePaddingTopText);

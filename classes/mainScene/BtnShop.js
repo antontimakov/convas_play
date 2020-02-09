@@ -9,6 +9,6 @@ class BtnShop extends ImgContainer {
         this.img.src = 'img/shop.png';
     }
     clickBody(poE){
-        goGame.scenes.shop.show();
+        Game.scenes.shop.show();
     }
 }

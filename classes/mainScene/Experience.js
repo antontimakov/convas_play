@@ -31,15 +31,15 @@ class Experience extends Container {
             });
     }
     draw(){
-        goGame.context.fillStyle = this.colorStart;
-        goGame.context.fillRect(
+        Game.context.fillStyle = this.colorStart;
+        Game.context.fillRect(
             this.x,
             this.y,
             this.width,
             this.height
         ); // Закрашиваем всю полосу опыта цветом по умолчанию
-        goGame.context.fillStyle = this.color;
-        goGame.context.fillRect(
+        Game.context.fillStyle = this.color;
+        Game.context.fillRect(
             this.x,
             this.y,
             this.calcWidth,
@@ -51,11 +51,11 @@ class Experience extends Container {
     }
     drawExperienceText(){
         // настройки текста
-        goGame.context.font = 'bold 20px courier';
-        goGame.context.textAlign = 'center';
-        goGame.context.textBaseline = 'top';
-        goGame.context.fillStyle = 'white';
-        goGame.context.fillText(
+        Game.context.font = 'bold 20px courier';
+        Game.context.textAlign = 'center';
+        Game.context.textBaseline = 'top';
+        Game.context.fillStyle = 'white';
+        Game.context.fillText(
             `Ур ${this.text.lvl} (${this.text.value}/${this.text.lvlEnd})`,
             this.text.x,
             this.text.y

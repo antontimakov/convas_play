@@ -12,15 +12,15 @@ class Achievements {
         if (this.time && this.time > new Date().getTime()){
             let lnDeltaToNext = 0;
             this.info.forEach((elem)=>{
-                goGame.context.fillStyle = 'brown';
-                goGame.context.fillRect(this.x - 200, this.y - 5 + lnDeltaToNext, 400, 70);
-                goGame.context.font = 'bold 30px courier';
-                goGame.context.textAlign = 'center';
-                goGame.context.textBaseline = 'top';
-                goGame.context.fillStyle = 'white';
-                goGame.context.fillText(elem.name,  this.x, this.y + lnDeltaToNext);
-                goGame.context.font = '25px courier';
-                goGame.context.fillText(elem.description,  this.x, this.y + 30 + lnDeltaToNext);
+                Game.context.fillStyle = 'brown';
+                Game.context.fillRect(this.x - 200, this.y - 5 + lnDeltaToNext, 400, 70);
+                Game.context.font = 'bold 30px courier';
+                Game.context.textAlign = 'center';
+                Game.context.textBaseline = 'top';
+                Game.context.fillStyle = 'white';
+                Game.context.fillText(elem.name,  this.x, this.y + lnDeltaToNext);
+                Game.context.font = '25px courier';
+                Game.context.fillText(elem.description,  this.x, this.y + 30 + lnDeltaToNext);
                 lnDeltaToNext += this.deltaToNext;
             });
         }

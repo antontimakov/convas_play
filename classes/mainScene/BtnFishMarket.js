@@ -13,7 +13,7 @@ class BtnFishMarket extends ImgContainer {
     clickBody(poE){
         TProxy.getFromServer('/server/index.php?method=sellFish',
             response => {
-                goGame.scenes.main.gaObjs.bag.getBagItems();
+                Game.scenes.main.gaObjs.bag.getBagItems();
             }
         );
     }
@@ -26,11 +26,11 @@ class BtnFishMarket extends ImgContainer {
     }
     drawGold(){
         // настройки текста
-        goGame.context.font = 'bold 25px courier';
-        goGame.context.textAlign = 'center';
-        goGame.context.textBaseline = 'top';
-        goGame.context.fillStyle = 'white';
-        goGame.context.fillText(this.gold,  this.x, this.y);
+        Game.context.font = 'bold 25px courier';
+        Game.context.textAlign = 'center';
+        Game.context.textBaseline = 'top';
+        Game.context.fillStyle = 'white';
+        Game.context.fillText(this.gold,  this.x, this.y);
     }
     draw(){
         super.draw();

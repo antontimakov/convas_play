@@ -21,17 +21,17 @@ class Catch extends ImgContainer {
         if (this.show) {
             super.draw();
             // настройки текста
-            goGame.context.font = 'bold 20px courier';
-            goGame.context.textAlign = 'center';
-            goGame.context.textBaseline = 'top';
-            goGame.context.fillStyle = 'white';
-            goGame.context.fillText(this.text.text,  this.text.x, this.text.y);
+            Game.context.font = 'bold 20px courier';
+            Game.context.textAlign = 'center';
+            Game.context.textBaseline = 'top';
+            Game.context.fillStyle = 'white';
+            Game.context.fillText(this.text.text,  this.text.x, this.text.y);
             this.hideAnimate();
         }
     }
     hideAnimate(){
         if (!this.animate.timeHide){
-            this.animate.timeHide = new Date().getTime() + goGame.randn_bm() * this.animate.moHide;
+            this.animate.timeHide = new Date().getTime() + Game.randn_bm() * this.animate.moHide;
         }
         else{
             if (this.animate.timeHide <= new Date().getTime()){

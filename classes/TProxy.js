@@ -5,7 +5,7 @@ class TProxy{
             .then(response => {
                 pfFn(response.data['data']);
                 response.data['achievements'].forEach((element)=>{
-                    goGame.achievements.add(element);
+                    Game.achievements.add(element);
                 });
             });
     }

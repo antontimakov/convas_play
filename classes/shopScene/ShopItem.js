@@ -9,19 +9,19 @@ class ShopItem extends Container {
         this.text = 'Черви';
     }
     draw(){
-        goGame.context.fillStyle = 'gray';
-        goGame.context.fillRect(
+        Game.context.fillStyle = 'gray';
+        Game.context.fillRect(
             this.x,
             this.y,
             this.width,
             this.height
         );
         // настройки текста
-        goGame.context.font = 'bold 20px courier';
-        goGame.context.textAlign = 'left';
-        goGame.context.textBaseline = 'top';
-        goGame.context.fillStyle = 'black';
-        goGame.context.fillText(
+        Game.context.font = 'bold 20px courier';
+        Game.context.textAlign = 'left';
+        Game.context.textBaseline = 'top';
+        Game.context.fillStyle = 'black';
+        Game.context.fillText(
             this.text,
             this.x,
             this.y + this.height

@@ -10,11 +10,11 @@ class Msg {
     draw(){
         if (this.time && this.time > new Date().getTime()){
             // настройки текста
-            goGame.context.font = 'bold 25px courier';
-            goGame.context.textAlign = 'center';
-            goGame.context.textBaseline = 'top';
-            goGame.context.fillStyle = 'white';
-            goGame.context.fillText(this.text,  this.x, this.y);
+            Game.context.font = 'bold 25px courier';
+            Game.context.textAlign = 'center';
+            Game.context.textBaseline = 'top';
+            Game.context.fillStyle = 'white';
+            Game.context.fillText(this.text,  this.x, this.y);
         }
     }
     add(poText){

@@ -30,7 +30,7 @@ class Float extends ImgContainer {
             TProxy.getFromServer('/server/index.php?method=getFish',
             response => {
                 response.forEach((element) => {
-                    let loObj = goGame.scenes.main.gaObjs;
+                    let loObj = Game.scenes.main.gaObjs;
                     loObj.bag.getBagItems();
                     loObj.experience.getExperience();
                     loObj.catch.img.src = element.src_full;
@@ -40,7 +40,7 @@ class Float extends ImgContainer {
             });
         }
         else{
-            goGame.msg.add('Ещё не клюнуло!');
+            Game.msg.add('Ещё не клюнуло!');
         }
         this.show = false;
     }
@@ -57,7 +57,7 @@ class Float extends ImgContainer {
             this.animate.timeBitingStart &&
             (this.animate.timeBitingStart <= new Date().getTime())
         ){
-            this.animate.timeBitingEnd = new Date().getTime() + goGame.randn_bm() * this.animate.moBiting;
+            this.animate.timeBitingEnd = new Date().getTime() + Game.randn_bm() * this.animate.moBiting;
             this.biting = true;
             this.animate.timeBitingStart = null; // чтобы не попадать сюда при каждой перерисовке
         }
@@ -66,7 +66,7 @@ class Float extends ImgContainer {
                 (this.animate.timeBitingEnd <= new Date().getTime())
             ){
                 this.show = false;
-                goGame.msg.add('Рыбка сорвалась!');
+                Game.msg.add('Рыбка сорвалась!');
             }
         }
         if (this.biting){
@@ -79,12 +79,12 @@ class Float extends ImgContainer {
         this.startWaitingBiting();
     }
     setCoordinates() {
-        this.x = Math.round(Math.random() * (goGame.scenes.main.gaObjs.lake.width - this.width));
-        this.y = Math.round(Math.random() * (goGame.scenes.main.gaObjs.lake.height - this.height));
+        this.x = Math.round(Math.random() * (Game.scenes.main.gaObjs.lake.width - this.width));
+        this.y = Math.round(Math.random() * (Game.scenes.main.gaObjs.lake.height - this.height));
     }
     startWaitingBiting(){
         this.animate.curRadius = 0;
-        this.animate.timeBitingStart = new Date().getTime() + goGame.randn_bm() * this.animate.moStartBiting * 2;
+        this.animate.timeBitingStart = new Date().getTime() + Game.randn_bm() * this.animate.moStartBiting * 2;
         this.animate.timeBitingEnd = null;
         this.biting = false;
     }
@@ -98,16 +98,16 @@ class Float extends ImgContainer {
         this.animate.curRadius++;
     }
     drawLine(){
-        goGame.context.beginPath();
-        goGame.context.moveTo(this.line.startX, this.line.startY);
-        goGame.context.lineTo(this.x + this.width / 2, this.y);
-        goGame.context.closePath();
-        goGame.context.strokeStyle = this.line.color;
-        goGame.context.stroke();
+        Game.context.beginPath();
+        Game.context.moveTo(this.line.startX, this.line.startY);
+        Game.context.lineTo(this.x + this.width / 2, this.y);
+        Game.context.closePath();
+        Game.context.strokeStyle = this.line.color;
+        Game.context.stroke();
     }
     drawVawe(pnDelta){
-        goGame.context.beginPath();
-        goGame.context.arc(
+        Game.context.beginPath();
+        Game.context.arc(
             this.x + this.width / 2,
             this.y + this.height / 2,
             this.animate.curRadius - pnDelta + this.animate.startRadius,
@@ -115,7 +115,7 @@ class Float extends ImgContainer {
             Math.PI * 2,
             true
         );
-        goGame.context.strokeStyle = 'rgba(0, 0, 255, ' + (1 - (this.animate.curRadius - pnDelta)/100) + ')';
-        goGame.context.stroke();
+        Game.context.strokeStyle = 'rgba(0, 0, 255, ' + (1 - (this.animate.curRadius - pnDelta)/100) + ')';
+        Game.context.stroke();
     }
 }

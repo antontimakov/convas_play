@@ -29,7 +29,7 @@ class Scene{
     show(){
         let me = this;
         this.showed = true;
-        goGame.canvas.onclick = (poE)=>{me.click(poE)};
-        goGame.canvas.onmousemove = (poE)=>{me.over(poE)};
+        Game.canvas.onclick = (poE)=>{me.click(poE)};
+        Game.canvas.onmousemove = (poE)=>{me.over(poE)};
     }
 }

@@ -10,8 +10,8 @@ class Shop extends Container {
         this.show = false;
     }
     draw(){
-        goGame.context.fillStyle = this.color;
-        goGame.context.fillRect(
+        Game.context.fillStyle = this.color;
+        Game.context.fillRect(
             this.x,
             this.y,
             this.width,

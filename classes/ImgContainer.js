@@ -5,6 +5,6 @@ class ImgContainer extends Container {
         this.img = new Image();
     }
     draw(){
-        goGame.context.drawImage(this.img, this.x, this.y);
+        Game.context.drawImage(this.img, this.x, this.y);
     }
 }

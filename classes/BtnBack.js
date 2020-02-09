@@ -8,8 +8,8 @@ class BtnBack extends Container {
         this.height = 40;
     }
     draw(){
-        goGame.context.fillStyle = 'black';
-        goGame.context.fillRect(
+        Game.context.fillStyle = 'black';
+        Game.context.fillRect(
             this.x,
             this.y,
             this.width,
@@ -17,6 +17,6 @@ class BtnBack extends Container {
         );
     }
     clickBody(poE){
-        goGame.scenes.main.show();
+        Game.scenes.main.show();
     }
 }
