@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('app/users/{user}', function (App\User $user) {
+    // http://localhost/index.php/app/users/1
+    return $user->email;
+});
