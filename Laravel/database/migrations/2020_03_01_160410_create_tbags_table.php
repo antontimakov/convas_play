@@ -15,13 +15,13 @@ class CreateTbagsTable extends Migration
     {
         Schema::create('tbags', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('users_id')->comment('Пользователь');
+            $table->unsignedBigInteger('tuser_id')->comment('Пользователь');
             $table->unsignedBigInteger('titem_id')->comment('Предмет');
             $table->integer('bcount')->default(0)->comment('Кол-во');
             $table->timestamps();
 
-            $table->foreign('users_id')->references('id')
-                ->on('users')
+            $table->foreign('tuser_id')->references('id')
+                ->on('tusers')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
