@@ -12,14 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    return view('welcome', [
+        'tasks' => 2
+    ]);
 });
-//Route::view('/', 'welcome');
 
-
-Route::get('app/users/{task}', function (App\User $task) {
+Route::get('app/tasks/{task}', function (App\Task $task) {
     // http://localhost/index.php/app/users/1
     return $task->name;
 });
-/*
-Route::get('/user/{user}', 'Controller@dispatch');*/
+
+
+Route::get('user/{id}', 'UserController@show');
