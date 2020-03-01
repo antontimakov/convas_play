@@ -1,5 +1,5 @@
 <?php
-
+// php artisan make:migration create_tusers_table --create=tusers
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
