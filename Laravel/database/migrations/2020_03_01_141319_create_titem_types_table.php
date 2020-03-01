@@ -1,10 +1,10 @@
 <?php
-// php artisan make:migration create_tusers_table --create=tusers
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTusersTable extends Migration
+class CreateTitemTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTusersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tusers', function (Blueprint $table) {
+        Schema::create('titem_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('name')->comment('Имя в игре');
-            $table->integer('experience')->default(0)->comment('Опыт');
-            $table->integer('gold')->default(0)->comment('Золото');
+            $table->text('name')->comment('Наименование типа');
+            $table->integer('probability')->default(0)->comment('Вероятность');
+            $table->integer('prior')->default(0)->comment('Приоритет');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateTusersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tusers');
+        Schema::dropIfExists('titem_types');
     }
 }
