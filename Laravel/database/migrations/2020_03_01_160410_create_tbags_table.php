@@ -16,7 +16,7 @@ class CreateTbagsTable extends Migration
         Schema::create('tbags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('users_id')->comment('Пользователь');
-            $table->unsignedBigInteger('items_id')->comment('Предмет');
+            $table->unsignedBigInteger('titem_id')->comment('Предмет');
             $table->integer('bcount')->default(0)->comment('Кол-во');
             $table->timestamps();
 
@@ -25,7 +25,7 @@ class CreateTbagsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('items_id')->references('id')
+            $table->foreign('titem_id')->references('id')
                 ->on('titems')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
