@@ -10,4 +10,8 @@ class Tbag extends Model
     {
         return $this->belongsTo('App\Titem');
     }
+    public function tuser()
+    {
+        return $this->belongsTo('App\Tuser');
+    }
 }

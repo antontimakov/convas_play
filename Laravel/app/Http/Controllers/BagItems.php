@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Tbag;
-use App\Titem;
 use App\Http\Controllers\Controller;
 
 class BagItems extends Controller
@@ -16,6 +15,12 @@ class BagItems extends Controller
      */
     public function show()
     {
-        return Tbag::find(3)->titem->name;
+        //return Tbag::find(3)->titem->name;
+        return Tbag::with(['titem' => function($query){
+                $query->select('id', 'name', 'src');
+            }])
+            ->select('bcount', 'titem_id')
+            ->where('tuser_id', 1)
+            ->get()->toJson();
     }
 }
