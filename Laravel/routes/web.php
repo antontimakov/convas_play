@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
 
     return view('welcome', [
         'tasks' => 2
@@ -24,7 +24,11 @@ Route::get('app/tasks/{task}', function (App\Task $task) {
 });
 
 
-Route::get('user/{id}', 'UserController@show');
+Route::get('user/{id}', 'UserController@show');*/
 
 Route::get('method/getbagitems', 'BagItems@show');
 Route::get('method/getExperience', 'Experience@show');
+Route::get('app/tusers/{tuser}', function (App\Tuser $tuser) {
+    // http://localhost/index.php/app/tusers/1
+    return $tuser->gold;
+});

@@ -6,6 +6,9 @@ class TProxy{
                 if (response.data['data']){
                     pfFn(response.data['data']);
                 }
+                else{
+                    pfFn(response);
+                }
                 if (response.data['achievements']){
                     response.data['achievements'].forEach((element)=>{
                         Game.achievements.add(element);
