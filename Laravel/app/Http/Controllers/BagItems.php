@@ -21,6 +21,7 @@ class BagItems extends Controller
             }])
             ->select('bcount', 'titem_id')
             ->where('tuser_id', 1)
-            ->get()->toArray()];
+            ->get()
+            ->toArray()];
     }
 }

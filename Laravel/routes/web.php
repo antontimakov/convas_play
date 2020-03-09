@@ -27,3 +27,4 @@ Route::get('app/tasks/{task}', function (App\Task $task) {
 Route::get('user/{id}', 'UserController@show');
 
 Route::get('method/getbagitems', 'BagItems@show');
+Route::get('method/getExperience', 'Experience@show');

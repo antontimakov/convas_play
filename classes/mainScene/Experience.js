@@ -19,7 +19,7 @@ class Experience extends Container {
         this.getExperience();
     }
     getExperience(){
-        TProxy.getFromServer('/server/index.php?method=getExperience',
+        TProxy.getFromServer('/Laravel/public/index.php/method/getExperience',
             response => {
                 this.text.value = response.experience;
                 this.text.lvlEnd = response.lvlEnd;
