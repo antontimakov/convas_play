@@ -35,13 +35,13 @@ class Bag extends Container {
     getBagItems(){
         let loMe = this;
         loMe.imgs = [];
-        TProxy.getFromServer('/server/index.php?method=getBagItems',
+        TProxy.getFromServer('/Laravel/public/index.php/method/getbagitems',
             response => {
                 response.forEach((element) => {
-                    loMe.imgs[element.id] = {};
-                    loMe.imgs[element.id].img = new Image();
-                    loMe.imgs[element.id].img.src = element.src;
-                    loMe.imgs[element.id].count = element.bcount;
+                    loMe.imgs[element.titem.id] = {};
+                    loMe.imgs[element.titem.id].img = new Image();
+                    loMe.imgs[element.titem.id].img.src = element.titem.src;
+                    loMe.imgs[element.titem.id].count = element.bcount;
                 });
             });
     }
