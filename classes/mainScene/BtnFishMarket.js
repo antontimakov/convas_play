@@ -18,9 +18,9 @@ class BtnFishMarket extends ImgContainer {
         );
     }
     initGold(){
-        TProxy.getFromServer('/Laravel/public/index.php/app/tusers/1',
+        TProxy.getFromServer('/Laravel/public/index.php/method/getGold',
             response => {
-                this.gold = response[0].gold;
+                this.gold = response;
             }
         );
     }

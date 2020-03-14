@@ -1,5 +1,5 @@
 <?php
-function getBagItems(){
+/*function getBagItems(){
     $query = "
         SELECT
             i.id,
@@ -12,4 +12,4 @@ function getBagItems(){
         WHERE u.id = 1
     ;";
     return DbProxy::requestByQuery($query);
-}
+}*/

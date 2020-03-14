@@ -1,5 +1,5 @@
 <?php
-function getExperience(){
+/*function getExperience(){
     $query = "
                     SELECT
                         experience
@@ -8,7 +8,7 @@ function getExperience(){
                 ;";
     $laRes = DbProxy::requestByQuery($query);
     return lvlByExperience($laRes[0]['experience']);
-}
+}*/
 function lvlByExperience($pnExperience){
     $loRes = new StdClass();
     $loRes->lvlStart = 0;

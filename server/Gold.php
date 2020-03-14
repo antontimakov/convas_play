@@ -1,5 +1,5 @@
 <?php
-function getGold(){
+/*function getGold(){
     $query = "
         SELECT
             gold
@@ -7,4 +7,4 @@ function getGold(){
         WHERE id = 1
     ;";
     return DbProxy::requestByQuery($query);
-}
+}*/

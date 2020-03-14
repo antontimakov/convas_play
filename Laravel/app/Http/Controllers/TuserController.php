@@ -5,17 +5,15 @@ namespace App\Http\Controllers;
 use App\Tuser;
 use App\Http\Controllers\Controller;
 
-class Experience extends Controller
+class TuserController extends Controller
 {
-    /**
-     * Показать профиль данного пользователя.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show()
+    public function experience()
     {
         return ['data' => $this->lvlByExperience(Tuser::where('id', 1)->value('experience'))];
+    }
+    public function gold()
+    {
+        return ['data' => Tuser::where('id', 1)->value('gold')];
     }
     protected function lvlByExperience($pnExperience){
         $loRes = (object)[];
