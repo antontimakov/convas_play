@@ -3,19 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-
-/*
- * $select = User::where(...)
-                  ->where(...)
-                  ->whereIn(...)
-                  ->select(array('email','moneyOwing'));
-$bindings = $select->getBindings();
-
-
-DB::table('user_debt_collection')
-->insertUsing(['email','dinero'], $select);
- * */
 
 class TmarketController extends Controller
 {
@@ -23,7 +10,7 @@ class TmarketController extends Controller
     {
         DB::transaction(function () {
             DB::select(DB::raw("
-            INSERT INTO public.tmarkets(
+            INSERT INTO public.tmarket(
                 item_id,
                 user_id,
                 bcount,
@@ -34,8 +21,8 @@ class TmarketController extends Controller
                 1,
                 b.bcount,
                 NOW() + INTERVAL '1 SECOND' * SUM(b.bcount * i.price) OVER()
-            FROM public.tbags AS b
-            INNER JOIN public.titems AS i ON (b.item_id = i.id)
+            FROM public.tbag AS b
+            INNER JOIN public.titem AS i ON (b.item_id = i.id)
             WHERE
                 b.user_id = 1 AND
                 i.item_type_id != 4;"));

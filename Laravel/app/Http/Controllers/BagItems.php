@@ -7,21 +7,15 @@ use App\Http\Controllers\Controller;
 
 class BagItems extends Controller
 {
-    /**
-     * Показать профиль данного пользователя.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show()
     {
-        //return Tbag::find(3)->titem->name;
-        return ['data' => Tbag::with(['titem' => function($query){
+        $res = Tbag::with(['titem' => function($query){
                 $query->select('id', 'name', 'src');
             }])
             ->select('bcount', 'titem_id')
-            ->where('tuser_id', 1)
-            ->get()
+            ->where('tuser_id', 1);
+        return ['data' =>
+            $res->get()
             ->toArray()];
     }
 }

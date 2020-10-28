@@ -9,11 +9,15 @@ class TuserController extends Controller
 {
     public function experience()
     {
-        return ['data' => $this->lvlByExperience(Tuser::where('id', 1)->value('experience'))];
+        $res = Tuser::where('id', 1)
+            ->value('experience');
+        return ['data' => $this->lvlByExperience($res)];
     }
     public function gold()
     {
-        return ['data' => Tuser::where('id', 1)->value('gold')];
+        $res = Tuser::where('id', 1)
+            ->value('gold');
+        return ['data' => $res];
     }
     protected function lvlByExperience($pnExperience){
         $loRes = (object)[];
