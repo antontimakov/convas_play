@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('getbagitems', 'BagItems@show');
+Route::get('getExperience', 'TuserController@experience');
+Route::get('getGold', 'TuserController@gold');

@@ -18,7 +18,7 @@ class BtnFishMarket extends ImgContainer {
         );
     }
     initGold(){
-        TProxy.getFromServer('/Laravel/public/getGold',
+        TProxy.getFromServer('/Laravel/public/api/getGold',
             response => {
                 this.gold = response;
             }
