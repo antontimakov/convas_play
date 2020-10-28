@@ -26,6 +26,6 @@ Route::get('app/tasks/{task}', function (App\Task $task) {
 
 Route::get('user/{id}', 'UserController@show');*/
 
-Route::get('method/getbagitems', 'BagItems@show');
-Route::get('method/getExperience', 'TuserController@experience');
-Route::get('method/getGold', 'TuserController@gold');
+Route::get('getbagitems', 'BagItems@show');
+Route::get('getExperience', 'TuserController@experience');
+Route::get('getGold', 'TuserController@gold');
