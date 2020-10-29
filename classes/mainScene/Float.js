@@ -27,7 +27,7 @@ class Float extends ImgContainer {
     clickBody(poE){
         if (this.biting) {
             this.show = false;
-            TProxy.getFromServer('/server/index.php?method=getFish',
+            TProxy.getFromServer('/Laravel/public/api/getFish',
             response => {
                 response.forEach((element) => {
                     let loObj = Game.scenes.main.gaObjs;

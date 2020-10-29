@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('getbagitems', 'BagItems@show');
 Route::get('getExperience', 'TuserController@experience');
 Route::get('getGold', 'TuserController@gold');
+Route::get('getFish', 'FishController@getFish');

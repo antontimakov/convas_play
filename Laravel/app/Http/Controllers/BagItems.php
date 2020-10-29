@@ -1,9 +1,8 @@
 <?php
-//http://localhost/Laravel/public/index.php/method/getbagitems
+//http://localhost/Laravel/public/getbagitems
 namespace App\Http\Controllers;
 
 use App\Tbag;
-use App\Http\Controllers\Controller;
 
 class BagItems extends Controller
 {
