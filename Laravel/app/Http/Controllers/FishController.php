@@ -8,8 +8,12 @@ class FishController extends Controller
 {
     public function getFish()
     {
-        $res = TitemType::get();
-        echo $res;
+        $oRes = TitemType::orderBy('prior')
+            ->get();
+        $aRes = $oRes -> toArray();
+        foreach ($aRes as $value){
+            print_r($value);
+        }
         die();
 //         SELECT DISTINCT ON (it.prior)
 //            i.id,
@@ -21,7 +25,20 @@ class FishController extends Controller
 //        ORDER BY
 //            it.prior,
 //            RANDOM()
-
-
+    }
+    // Выбирает категорию в соответстви с распределением вероятностей
+    function idByRand($paRes){
+        $lnRand = rand (0,99);
+        $lnSumProb = 0; // сумма вероятностей
+        foreach ($paRes as $paRe) {
+            $lnSumProb += $paRe['probability'];
+            if ($lnSumProb > $lnRand){
+                $loRet = new stdClass();
+                $loRet->id = $paRe['id'];
+                $loRet->type_id = $paRe['type_id'];
+                return $loRet;
+            }
+        }
+        return false;
     }
 }
