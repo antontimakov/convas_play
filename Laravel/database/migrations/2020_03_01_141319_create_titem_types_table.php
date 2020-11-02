@@ -16,7 +16,7 @@ class CreateTitemTypesTable extends Migration
         Schema::create('main.titem_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('name')->comment('Наименование типа');
-            $table->unsignedBigInteger('prior_id')->comment('Приоритет');
+            $table->unsignedBigInteger('tprior_id')->comment('Приоритет');
             $table->timestamps();
         });
     }
