@@ -13,7 +13,7 @@ class CreateTitemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('titems', function (Blueprint $table) {
+        Schema::create('main.titems', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('name')->comment('Наименование предмета');
             $table->unsignedBigInteger('item_types_id')->comment('Тип');
@@ -26,7 +26,7 @@ class CreateTitemsTable extends Migration
             $table->timestamps();
 
             $table->foreign('item_types_id')->references('id')
-                ->on('titem_types')
+                ->on('main.titem_types')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
         });
@@ -39,6 +39,6 @@ class CreateTitemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('titems');
+        Schema::dropIfExists('main.titems');
     }
 }

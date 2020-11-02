@@ -13,7 +13,7 @@ class CreateTbagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbags', function (Blueprint $table) {
+        Schema::create('main.tbags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('tuser_id')->comment('Пользователь');
             $table->unsignedBigInteger('titem_id')->comment('Предмет');
@@ -21,12 +21,12 @@ class CreateTbagsTable extends Migration
             $table->timestamps();
 
             $table->foreign('tuser_id')->references('id')
-                ->on('tusers')
+                ->on('main.tusers')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
             $table->foreign('titem_id')->references('id')
-                ->on('titems')
+                ->on('main.titems')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
         });
@@ -39,6 +39,6 @@ class CreateTbagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbags');
+        Schema::dropIfExists('main.tbags');
     }
 }

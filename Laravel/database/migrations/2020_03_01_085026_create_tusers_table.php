@@ -13,7 +13,7 @@ class CreateTusersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tusers', function (Blueprint $table) {
+        Schema::create('main.tusers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('name')->comment('Имя в игре');
             $table->integer('experience')->default(0)->comment('Опыт');
@@ -29,6 +29,6 @@ class CreateTusersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tusers');
+        Schema::dropIfExists('main.tusers');
     }
 }

@@ -13,11 +13,10 @@ class CreateTitemTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('titem_types', function (Blueprint $table) {
+        Schema::create('main.titem_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('name')->comment('Наименование типа');
-            $table->integer('probability')->default(0)->comment('Вероятность');
-            $table->integer('prior')->default(0)->comment('Приоритет');
+            $table->unsignedBigInteger('prior_id')->comment('Приоритет');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTitemTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('titem_types');
+        Schema::dropIfExists('main.titem_types');
     }
 }

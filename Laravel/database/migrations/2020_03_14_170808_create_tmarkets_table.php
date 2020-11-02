@@ -13,7 +13,7 @@ class CreateTmarketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tmarkets', function (Blueprint $table) {
+        Schema::create('main.tmarkets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('tuser_id')->comment('Пользователь');
             $table->unsignedBigInteger('titem_id')->comment('Предмет');
@@ -22,12 +22,12 @@ class CreateTmarketsTable extends Migration
             $table->timestamps();
 
             $table->foreign('tuser_id')->references('id')
-                ->on('tusers')
+                ->on('main.tusers')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
             $table->foreign('titem_id')->references('id')
-                ->on('titems')
+                ->on('main.titems')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
         });
@@ -40,6 +40,6 @@ class CreateTmarketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tmarkets');
+        Schema::dropIfExists('main.tmarkets');
     }
 }
