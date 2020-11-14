@@ -45,7 +45,7 @@ class Experience extends Container {
             this.calcWidth,
             this.height
         );
-        if (this.text.value){
+        if (this.text.value !== null){
             this.drawExperienceText();
         }
     }

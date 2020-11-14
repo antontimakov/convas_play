@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tbag extends Model
 {
+    protected $table = 'main.tbags';
+
     public function titem()
     {
         return $this->belongsTo('App\Titem');

@@ -38,10 +38,10 @@ class Bag extends Container {
         TProxy.getFromServer('/Laravel/public/api/getbagitems',
             response => {
                 response.forEach((element) => {
-                    loMe.imgs[element.titem.id] = {};
-                    loMe.imgs[element.titem.id].img = new Image();
-                    loMe.imgs[element.titem.id].img.src = element.titem.src;
-                    loMe.imgs[element.titem.id].count = element.bcount;
+                    loMe.imgs[element.titem_id] = {};
+                    loMe.imgs[element.titem_id].img = new Image();
+                    loMe.imgs[element.titem_id].img.src = element.src;
+                    loMe.imgs[element.titem_id].count = element.bcount;
                 });
             });
     }
