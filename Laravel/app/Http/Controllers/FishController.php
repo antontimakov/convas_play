@@ -11,7 +11,7 @@ class FishController extends Controller
     {
         $laItems = $this->getAllItems();
         $item = $this->randItem($laItems['items'], $laItems['sumProbability']);
-        $itemId = $item['itemId'];
+        $itemId = $item['id'];
         $countItems = $this->getCountItemsById($itemId);
         if ($countItems === 0) {
             $this->createNewRecTbag($itemId);
@@ -34,10 +34,7 @@ class FishController extends Controller
         foreach ($paItems as $paItem) {
             $lnSumProb += $paItem['probability'];
             if ($lnSumProb > $lnRand) {
-                return [
-                    'itemId' => $paItem['id'],
-                    'experience' => $paItem['experience']
-                ];
+                return $paItem;
             }
         }
         return null;
@@ -61,7 +58,9 @@ class FishController extends Controller
             $items[] = [
                 'id' => $r->id,
                 'probability' => (int)$probability,
-                'experience' => (int)$r->experience
+                'experience' => (int)$r->experience,
+                'name' => (string)$r->name,
+                'src_full' => (string)$r->src_full
             ];
         }
         return [
