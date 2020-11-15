@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Main;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,11 +10,11 @@ class TitemTypes extends Model
 
     public function titem()
     {
-        return $this->belongsTo('App\Titem');
+        return $this->belongsTo('App\Models\Main\Titem');
     }
 
     public function tprior()
     {
-        return $this->belongsTo('App\Tprior');
+        return $this->belongsTo('App\Models\Main\Tprior');
     }
 }

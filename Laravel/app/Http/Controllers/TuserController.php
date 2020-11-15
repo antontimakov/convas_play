@@ -2,7 +2,7 @@
 //http://localhost/Laravel/public/index.php/method/getbagitems
 namespace App\Http\Controllers;
 
-use App\Tuser;
+use App\Models\Main\Tuser;
 use App\Http\Controllers\Controller;
 
 class TuserController extends Controller

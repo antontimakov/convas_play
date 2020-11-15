@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Main;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,10 +10,10 @@ class Tbag extends Model
 
     public function titem()
     {
-        return $this->belongsTo('App\Titem');
+        return $this->belongsTo('App\Models\Main\Titem');
     }
     public function tuser()
     {
-        return $this->belongsTo('App\Tuser');
+        return $this->belongsTo('App\Models\Main\Tuser');
     }
 }

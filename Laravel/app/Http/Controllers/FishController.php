@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Titem;
-use App\Tbag;
-use App\Tuser;
+use App\Models\Main\Titem;
+use App\Models\Main\Tbag;
+use App\Models\Main\Tuser;
 
 class FishController extends Controller
 {

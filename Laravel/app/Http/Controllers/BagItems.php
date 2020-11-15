@@ -2,7 +2,7 @@
 //http://localhost/Laravel/public/getbagitems
 namespace App\Http\Controllers;
 
-use App\Tbag;
+use App\Models\Main\Tbag;
 
 class BagItems extends Controller
 {
