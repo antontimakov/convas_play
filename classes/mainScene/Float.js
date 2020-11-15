@@ -30,7 +30,7 @@ class Float extends ImgContainer {
             TProxy.getFromServer('/Laravel/public/api/getFish',
             response => {
                 response.forEach((element) => {
-                    let loObj = Game.scenes.main.gaObjs;
+                    const loObj = Game.scenes.main.gaObjs;
                     loObj.bag.getBagItems();
                     loObj.experience.getExperience();
                     loObj.catch.img.src = element.src_full;
