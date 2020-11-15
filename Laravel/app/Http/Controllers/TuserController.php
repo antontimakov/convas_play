@@ -17,7 +17,7 @@ class TuserController extends Controller
     {
         $res = Tuser::where('id', 1)
             ->value('gold');
-        return ['data' => $res];
+        return ['data' => [$res]];
     }
     protected function lvlByExperience($pnExperience){
         $loRes = (object)[];
