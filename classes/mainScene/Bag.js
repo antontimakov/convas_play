@@ -29,7 +29,8 @@ class Bag extends Container {
             Game.context.fillText(
                 element.count,
                 this.x + this.width - this.cell.fakePaddingRightText - this.cell.width * (lnNum - 1),
-                this.y + this.cell.fakePaddingTopText);
+                this.y + this.cell.fakePaddingTopText
+            );
         });
     }
     getBagItems(){

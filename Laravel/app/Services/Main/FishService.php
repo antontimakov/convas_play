@@ -33,7 +33,7 @@ class FishService
         }
         $this->fishRepository->incrementItemById($itemId);
         $this->fishRepository->addExperience($item['experience']);
-        return $item;
+        return ['data' => [$item]];
     }
 
     /**
