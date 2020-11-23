@@ -15,6 +15,7 @@
     "require": {
         "fruitcake/laravel-cors": "1.0",
         "fideloper/proxy": "4.4",
-        "laravel/framework": "5.5"
+        "laravel/framework": "5.5",
+        "workerman/workerman": "*.*"
     }
 }
