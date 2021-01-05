@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+    apache:
+        build: ./docker
+        volumes:
+            - ./:/var/www/
+            - ./docker/php.ini:/usr/local/etc/php/php.ini
+
+#    db:
+#        image: "mysql:5.7"
+#        volumes:
+#            - ./docker/db:/var/lib/mysql
+#        environment:
+#               MYSQL_ROOT_PASSWORD: root
+#               MYSQL_DATABASE: local
+#               MYSQL_USER: local
+#               MYSQL_PASSWORD: local
